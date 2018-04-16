@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
+import { Container } from 'semantic-ui-react';
 
 import NavigationBar from '../components/NavigationBar';
 import globalConfig from '../../global-config';
@@ -10,7 +11,7 @@ import 'semantic-ui-css/semantic.min.css';
 const Layout = ({ children }) => {
   const { title, author, description, keywords } = globalConfig;
   return (
-    <div>
+    <Container fluid>
       <Helmet
         title={title}
         meta={[
@@ -20,8 +21,8 @@ const Layout = ({ children }) => {
         ]}
       />
       <NavigationBar siteTitle={title} />
-      <div>{children()}</div>
-    </div>
+      <Container text>{children()}</Container>
+    </Container>
   );
 };
 
