@@ -26,9 +26,7 @@ const Layout = ({ children }) => {
       <Container style={{ marginTop: '7em' }}>
         <Grid columns="equal">
           <Grid.Column />
-          <Grid.Column width={10}>
-            <Segment>{children()}</Segment>
-          </Grid.Column>
+          <Grid.Column width={10}>{children()}</Grid.Column>
           <Grid.Column>
             <ProfileCard />
           </Grid.Column>
