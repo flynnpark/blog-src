@@ -1,6 +1,15 @@
 module.exports = {
   siteMetadata: {
-    title: 'Gatsby Default Starter',
+    title: 'Flynndev',
   },
-  plugins: ['gatsby-plugin-react-helmet'],
+  plugins: [
+    'gatsby-plugin-react-helmet',
+    {
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        name: 'blog-posts',
+        path: `${__dirname}/blog-posts/`,
+      },
+    },
+  ],
 }
