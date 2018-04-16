@@ -1,6 +1,8 @@
 module.exports = {
   siteMetadata: {
     title: 'Flynndev',
+    author: 'Flynn <wphestiraid@gmail.com>',
+    keywords: ['dev', 'blog', 'web'],
   },
   plugins: [
     'gatsby-plugin-react-helmet',
