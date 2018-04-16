@@ -4,19 +4,25 @@ import Helmet from 'react-helmet';
 
 import Header from '../components/header';
 
-const Layout = ({ children, data }) => (
-  <div>
-    <Helmet
-      title={data.site.siteMetadata.title}
-      meta={[
-        { name: 'description', content: 'Sample' },
-        { name: 'keywords', content: 'sample, something' },
-      ]}
-    />
-    <Header siteTitle={data.site.siteMetadata.title} />
-    <div>{children()}</div>
-  </div>
-);
+import globalConfig from '../../global-config';
+
+const Layout = ({ children, data }) => {
+  const { title, author, description, keywords } = globalConfig;
+  return (
+    <div>
+      <Helmet
+        title={title}
+        meta={[
+          { name: 'author', content: `${author}` },
+          { name: 'description', content: `${description}` },
+          { name: 'keywords', content: `${keywords}` },
+        ]}
+      />
+      <Header siteTitle={data.site.siteMetadata.title} />
+      <div>{children()}</div>
+    </div>
+  );
+};
 
 Layout.propTypes = {
   children: PropTypes.func,
