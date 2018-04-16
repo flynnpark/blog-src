@@ -1,10 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
-import { Container } from 'semantic-ui-react';
+import { Container, Grid, Segment } from 'semantic-ui-react';
+
+import globalConfig from '../../global-config';
 
 import NavigationBar from '../components/NavigationBar';
-import globalConfig from '../../global-config';
+import ProfileCard from '../components/ProfileCard';
 
 import 'semantic-ui-css/semantic.min.css';
 
@@ -21,7 +23,17 @@ const Layout = ({ children }) => {
         ]}
       />
       <NavigationBar siteTitle={title} />
-      <Container text>{children()}</Container>
+      <Container style={{ marginTop: '7em' }}>
+        <Grid columns="equal">
+          <Grid.Column />
+          <Grid.Column width={10}>
+            <Segment>{children()}</Segment>
+          </Grid.Column>
+          <Grid.Column>
+            <ProfileCard />
+          </Grid.Column>
+        </Grid>
+      </Container>
     </Container>
   );
 };
