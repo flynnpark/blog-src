@@ -2,11 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
 
-import Header from '../components/header';
-
+import NavigationBar from '../components/NavigationBar';
 import globalConfig from '../../global-config';
 
-const Layout = ({ children, data }) => {
+import 'semantic-ui-css/semantic.min.css';
+
+const Layout = ({ children }) => {
   const { title, author, description, keywords } = globalConfig;
   return (
     <div>
@@ -18,7 +19,7 @@ const Layout = ({ children, data }) => {
           { name: 'keywords', content: `${keywords}` },
         ]}
       />
-      <Header siteTitle={data.site.siteMetadata.title} />
+      <NavigationBar siteTitle={title} />
       <div>{children()}</div>
     </div>
   );
@@ -29,13 +30,3 @@ Layout.propTypes = {
 };
 
 export default Layout;
-
-export const query = graphql`
-  query SiteTitleQuery {
-    site {
-      siteMetadata {
-        title
-      }
-    }
-  }
-`;
