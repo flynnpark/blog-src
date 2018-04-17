@@ -2,11 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
 import { Container } from 'semantic-ui-react';
-
 import globalConfig from '../../global-config';
-
 import NavigationBar from '../components/NavigationBar';
-
 import 'semantic-ui-css/semantic.min.css';
 
 const Layout = ({ children }) => {
@@ -22,7 +19,7 @@ const Layout = ({ children }) => {
         ]}
       />
       <NavigationBar siteTitle={title} />
-      <Container style={{ marginTop: '7em' }}>{children()}</Container>
+      <Container style={{ marginTop: '6em' }}>{children()}</Container>
     </Container>
   );
 };

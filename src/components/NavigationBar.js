@@ -4,7 +4,7 @@ import { Menu, Container } from 'semantic-ui-react';
 
 const NavigationBar = ({ siteTitle }) => {
   return (
-    <Menu borderless fixed="top" inverted>
+    <Menu borderless fixed="top" inverted size="huge">
       <Container>
         <Link className="header item" to="/">
           {siteTitle}
