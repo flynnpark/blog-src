@@ -15,9 +15,16 @@ module.exports = {
       },
     },
     {
-      resolve: `gatsby-plugin-canonical-urls`,
+      resolve: 'gatsby-plugin-canonical-urls',
       options: {
         siteUrl: siteUrl,
+      },
+    },
+    {
+      resolve: 'gatsby-plugin-google-analytics',
+      options: {
+        trackingId: 'UA-101787931-3',
+        head: true,
       },
     },
   ],
