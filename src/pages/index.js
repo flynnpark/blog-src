@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'gatsby-link';
-import { Header, Icon, Segment } from 'semantic-ui-react';
+import { Header, Icon, Segment, Item } from 'semantic-ui-react';
 import PostListItem from '../components/PostListItem';
 
 const IndexPage = ({
@@ -10,14 +10,16 @@ const IndexPage = ({
 }) => {
   const Posts = edges
     .filter(edge => !!edge.node.frontmatter.date)
-    .map(edge => <PostListItem key={edge.node.id} post={edge.node} />);
+    .map((edge, index) => <PostListItem key={index} post={edge.node} />);
   return (
     <div>
       <Header as="h2" attached="top">
         <Icon name="list" />
         <Header.Content>Lastest Posts</Header.Content>
       </Header>
-      <Segment attached="bottom">{Posts}</Segment>
+      <Segment attached="bottom">
+        <Item.Group divided>{Posts}</Item.Group>
+      </Segment>
     </div>
   );
 };
@@ -29,12 +31,14 @@ export const pageQuery = graphql`
     allMarkdownRemark(sort: { order: DESC, fields: [frontmatter___date] }) {
       edges {
         node {
-          id
+          fields {
+            slug
+          }
           excerpt(pruneLength: 200)
           frontmatter {
             date(formatString: "MMMM DD, YYYY")
-            path
             title
+            author
           }
         }
       }

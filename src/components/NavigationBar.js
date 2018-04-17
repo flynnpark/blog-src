@@ -8,15 +8,11 @@ const NavigationBar = ({ siteTitle }) => {
     <Menu borderless fixed="top" inverted>
       <Container>
         <Link to="/">
-          <Menu.Item as="a" header>
-            {siteTitle}
-          </Menu.Item>
+          <Menu.Item header>{siteTitle}</Menu.Item>
         </Link>
 
         <Menu.Menu position="right">
-          <Link to="/about/">
-            <Menu.Item as="a" name="About" />
-          </Link>
+          <Menu.Item as="a" name="About" />
         </Menu.Menu>
       </Container>
     </Menu>
