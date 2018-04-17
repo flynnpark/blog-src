@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
 import Link from 'gatsby-link';
-import { Grid } from 'semantic-ui-react';
+import { Grid, Breadcrumb } from 'semantic-ui-react';
 import TagsCard from '../components/TagsCard';
 import ProfileCard from '../components/ProfileCard';
 
@@ -19,6 +19,11 @@ const Tags = ({
       <Helmet title={title} />
       <Grid columns="equal">
         <Grid.Column width={13}>
+          <Breadcrumb>
+            <Breadcrumb.Section link>Home</Breadcrumb.Section>
+            <Breadcrumb.Divider icon="right angle" />
+            <Breadcrumb.Section active>Tags</Breadcrumb.Section>
+          </Breadcrumb>
           <TagsCard data={group} />
         </Grid.Column>
         <Grid.Column width={3}>
