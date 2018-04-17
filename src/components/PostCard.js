@@ -2,7 +2,7 @@ import React from 'react';
 import Link from 'gatsby-link';
 import { Item } from 'semantic-ui-react';
 
-const PostListItem = ({ post }) => {
+const PostCard = ({ post }) => {
   return (
     <Item>
       <Item.Content>
@@ -18,4 +18,4 @@ const PostListItem = ({ post }) => {
   );
 };
 
-export default PostListItem;
+export default PostCard;

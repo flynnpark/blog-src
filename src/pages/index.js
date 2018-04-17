@@ -1,26 +1,25 @@
 import React from 'react';
 import Link from 'gatsby-link';
-import { Header, Icon, Segment, Item } from 'semantic-ui-react';
-import PostListItem from '../components/PostListItem';
+import { Grid } from 'semantic-ui-react';
+import PostCardList from '../components/PostCardList';
+import ProfileCard from '../components/ProfileCard';
+import TagsCard from '../components/TagsCard';
 
 const IndexPage = ({
   data: {
-    allMarkdownRemark: { edges },
+    allMarkdownRemark: { edges, group },
   },
 }) => {
-  const Posts = edges
-    .filter(edge => !!edge.node.frontmatter.date)
-    .map((edge, index) => <PostListItem key={index} post={edge.node} />);
   return (
-    <div>
-      <Header as="h2" attached="top">
-        <Icon name="list" />
-        <Header.Content>Lastest Posts</Header.Content>
-      </Header>
-      <Segment attached="bottom">
-        <Item.Group divided>{Posts}</Item.Group>
-      </Segment>
-    </div>
+    <Grid columns="equal">
+      <Grid.Column />
+      <Grid.Column width={10}>
+        <PostCardList data={edges} />
+      </Grid.Column>
+      <Grid.Column>
+        <ProfileCard />
+      </Grid.Column>
+    </Grid>
   );
 };
 
