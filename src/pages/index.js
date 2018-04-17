@@ -12,10 +12,10 @@ const IndexPage = ({
 }) => {
   return (
     <Grid columns="equal">
-      <Grid.Column width={12}>
+      <Grid.Column width={13}>
         <PostCardList data={edges} />
       </Grid.Column>
-      <Grid.Column>
+      <Grid.Column width={3}>
         <ProfileCard />
         <TagsCard data={group} />
       </Grid.Column>
