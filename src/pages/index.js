@@ -3,7 +3,7 @@ import Link from 'gatsby-link';
 import { Grid } from 'semantic-ui-react';
 import PostCardList from '../components/PostCardList';
 import ProfileCard from '../components/ProfileCard';
-import TagsCard from '../components/TagsCard';
+import MiniTagsCard from '../components/MiniTagsCard';
 
 const IndexPage = ({
   data: {
@@ -17,7 +17,7 @@ const IndexPage = ({
       </Grid.Column>
       <Grid.Column width={3}>
         <ProfileCard />
-        <TagsCard data={group} />
+        <MiniTagsCard data={group} />
       </Grid.Column>
     </Grid>
   );

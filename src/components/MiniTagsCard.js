@@ -3,20 +3,22 @@ import Link from 'gatsby-link';
 import kebabCase from 'lodash/kebabCase';
 import { Card, Icon, Label } from 'semantic-ui-react';
 
-const TagsCard = ({ data }) => {
+const MiniTagsCard = ({ data }) => {
   return (
-    <Card fluid>
+    <Card>
       <Card.Content>
         <Card.Header>
-          <Icon name="tags" />
-          Tags
+          <Link to="/tags">
+            <Icon name="tags" size="small" />
+            Tags
+          </Link>
         </Card.Header>
       </Card.Content>
       <Card.Content>
-        <Label.Group tag>
+        <Label.Group size="small">
           {data.map(tag => (
             <Link
-              className="ui big label"
+              className="ui label"
               to={`/tags/${kebabCase(tag.fieldValue)}`}
               key={tag.fieldValue}
             >
@@ -30,4 +32,4 @@ const TagsCard = ({ data }) => {
   );
 };
 
-export default TagsCard;
+export default MiniTagsCard;

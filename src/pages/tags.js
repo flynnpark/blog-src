@@ -1,8 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import kebabCase from 'lodash/kebabCase';
 import Helmet from 'react-helmet';
 import Link from 'gatsby-link';
+import { Grid } from 'semantic-ui-react';
+import TagsCard from '../components/TagsCard';
+import ProfileCard from '../components/ProfileCard';
 
 const Tags = ({
   data: {
@@ -15,18 +17,14 @@ const Tags = ({
   return (
     <div>
       <Helmet title={title} />
-      <div>
-        <h1>Tags</h1>
-        <ul>
-          {group.map(tag => (
-            <li key={tag.fieldValue}>
-              <Link to={`/tags/${kebabCase(tag.fieldValue)}`}>
-                {tag.fieldValue} ({tag.totalCount})
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </div>
+      <Grid columns="equal">
+        <Grid.Column width={13}>
+          <TagsCard data={group} />
+        </Grid.Column>
+        <Grid.Column width={3}>
+          <ProfileCard />
+        </Grid.Column>
+      </Grid>
     </div>
   );
 };

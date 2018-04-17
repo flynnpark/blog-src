@@ -1,6 +1,6 @@
 import React from 'react';
 import PostCard from './PostCard';
-import { Card, Icon, Segment, Item } from 'semantic-ui-react';
+import { Card, Icon, Item } from 'semantic-ui-react';
 
 const PostCardList = ({ data }) => {
   const Posts = data
