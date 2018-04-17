@@ -1,21 +1,23 @@
 import React from 'react';
 import PostCard from './PostCard';
-import { Header, Icon, Segment, Item } from 'semantic-ui-react';
+import { Card, Icon, Segment, Item } from 'semantic-ui-react';
 
 const PostCardList = ({ data }) => {
   const Posts = data
     .filter(edge => !!edge.node.frontmatter.date)
     .map((edge, index) => <PostCard key={index} post={edge.node} />);
   return (
-    <div>
-      <Header as="h2" attached="top">
-        <Icon name="list" />
-        <Header.Content>Lastest Posts</Header.Content>
-      </Header>
-      <Segment attached="bottom">
+    <Card fluid>
+      <Card.Content>
+        <Card.Header>
+          <Icon name="list" size="small" />
+          Lastest Posts
+        </Card.Header>
+      </Card.Content>
+      <Card.Content>
         <Item.Group divided>{Posts}</Item.Group>
-      </Segment>
-    </div>
+      </Card.Content>
+    </Card>
   );
 };
 

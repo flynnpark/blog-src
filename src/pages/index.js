@@ -12,8 +12,7 @@ const IndexPage = ({
 }) => {
   return (
     <Grid columns="equal">
-      <Grid.Column />
-      <Grid.Column width={10}>
+      <Grid.Column width={12}>
         <PostCardList data={edges} />
       </Grid.Column>
       <Grid.Column>
