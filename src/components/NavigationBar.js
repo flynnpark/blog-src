@@ -7,8 +7,8 @@ const NavigationBar = ({ siteTitle }) => {
   return (
     <Menu borderless fixed="top" inverted>
       <Container>
-        <Link to="/">
-          <Menu.Item header>{siteTitle}</Menu.Item>
+        <Link className="header item" to="/">
+          {siteTitle}
         </Link>
 
         <Menu.Menu position="right">
