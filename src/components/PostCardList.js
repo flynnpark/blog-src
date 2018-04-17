@@ -10,7 +10,7 @@ const PostCardList = ({ data }) => {
     <Card fluid>
       <Card.Content>
         <Card.Header>
-          <Icon name="list" size="small" />
+          <Icon name="list" />
           Lastest Posts
         </Card.Header>
       </Card.Content>

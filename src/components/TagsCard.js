@@ -1,4 +1,6 @@
 import React from 'react';
+import Link from 'gatsby-link';
+import kebabCase from 'lodash/kebabCase';
 import { Card, Icon, Label } from 'semantic-ui-react';
 
 const TagsCard = ({ data }) => {
@@ -6,17 +8,23 @@ const TagsCard = ({ data }) => {
     <Card>
       <Card.Content>
         <Card.Header>
-          <Icon name="tags" size="small" />
-          Tags
+          <Link to="/tags">
+            <Icon name="tags" size="small" />
+            Tags
+          </Link>
         </Card.Header>
       </Card.Content>
       <Card.Content>
         <Label.Group size="small">
-          {data.map(tagInfo => (
-            <Label key={tagInfo.fieldValue}>
-              {tagInfo.totalCount}
-              <Label.Detail>{tagInfo.fieldValue}</Label.Detail>
-            </Label>
+          {data.map(tag => (
+            <Link
+              className="ui label"
+              to={`/tags/${kebabCase(tag.fieldValue)}`}
+              key={tag.fieldValue}
+            >
+              {tag.totalCount}
+              <Label.Detail>{tag.fieldValue}</Label.Detail>
+            </Link>
           ))}
         </Label.Group>
       </Card.Content>
