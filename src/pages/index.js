@@ -18,6 +18,7 @@ const IndexPage = ({
       </Grid.Column>
       <Grid.Column>
         <ProfileCard />
+        <TagsCard data={group} />
       </Grid.Column>
     </Grid>
   );
@@ -40,6 +41,10 @@ export const pageQuery = graphql`
             author
           }
         }
+      }
+      group(field: frontmatter___tags) {
+        fieldValue
+        totalCount
       }
     }
   }
