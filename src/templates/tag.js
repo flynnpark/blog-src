@@ -1,31 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Link from 'gatsby-link';
+import TagPostCardList from '../components/TagPostCardList';
 
 const Tags = ({ pathContext, data }) => {
   const { tag } = pathContext;
   const { edges, totalCount } = data.allMarkdownRemark;
-  const tagHeader = `${totalCount} posts${
-    totalCount === 1 ? '' : 's'
-  } tagged with "${tag}"`;
 
-  return (
-    <div>
-      <h1>{tagHeader}</h1>
-      <ul>
-        {edges.map(({ node }, index) => {
-          const { slug } = node.fields;
-          const { title } = node.frontmatter;
-          return (
-            <li key={slug}>
-              <Link to={slug}>{title}</Link>
-            </li>
-          );
-        })}
-      </ul>
-      <Link to="/tags">All tags</Link>
-    </div>
-  );
+  return <TagPostCardList tag={tag} totalCount={totalCount} posts={edges} />;
 };
 
 Tags.propTypes = {

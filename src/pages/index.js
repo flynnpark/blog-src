@@ -7,7 +7,7 @@ const IndexPage = ({
     allMarkdownRemark: { edges },
   },
 }) => {
-  return <PostCardList data={edges} />;
+  return <PostCardList posts={edges} />;
 };
 
 export default IndexPage;

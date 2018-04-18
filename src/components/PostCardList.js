@@ -2,10 +2,7 @@ import React from 'react';
 import PostCard from './PostCard';
 import { Card, Icon, Item } from 'semantic-ui-react';
 
-const PostCardList = ({ data }) => {
-  const Posts = data
-    .filter(edge => !!edge.node.frontmatter.date)
-    .map((edge, index) => <PostCard key={index} post={edge.node} />);
+const PostCardList = ({ posts }) => {
   return (
     <Card fluid>
       <Card.Content>
@@ -15,7 +12,11 @@ const PostCardList = ({ data }) => {
         </Card.Header>
       </Card.Content>
       <Card.Content>
-        <Item.Group divided>{Posts}</Item.Group>
+        <Item.Group divided>
+          {posts
+            .filter(edge => !!edge.node.frontmatter.date)
+            .map((edge, index) => <PostCard key={index} post={edge.node} />)}
+        </Item.Group>
       </Card.Content>
     </Card>
   );
