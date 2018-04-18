@@ -1,38 +1,40 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
 import Link from 'gatsby-link';
-import { Grid, Breadcrumb } from 'semantic-ui-react';
+import { connect } from 'react-redux';
+import { Breadcrumb } from 'semantic-ui-react';
+
+import { actionCreators } from '../state/store';
+
 import TagsCard from '../components/TagsCard';
 import ProfileCard from '../components/ProfileCard';
 
-const Tags = ({
-  data: {
-    allMarkdownRemark: { group },
-    site: {
-      siteMetadata: { title },
-    },
-  },
-}) => {
-  return (
-    <div>
-      <Helmet title={title} />
-      <Grid columns="equal">
-        <Grid.Column width={13}>
-          <Breadcrumb>
-            <Breadcrumb.Section link>Home</Breadcrumb.Section>
-            <Breadcrumb.Divider icon="right angle" />
-            <Breadcrumb.Section active>Tags</Breadcrumb.Section>
-          </Breadcrumb>
-          <TagsCard data={group} />
-        </Grid.Column>
-        <Grid.Column width={3}>
-          <ProfileCard />
-        </Grid.Column>
-      </Grid>
-    </div>
-  );
-};
+class Tags extends Component {
+  componentDidMount() {
+    const { setTagCardVisible } = this.props;
+    setTagCardVisible(false);
+  }
+
+  componentWillUnmount() {
+    const { setTagCardVisible } = this.props;
+    setTagCardVisible(true);
+  }
+
+  render() {
+    const tags = this.props.data.allMarkdownRemark.group;
+    return (
+      <div>
+        <Breadcrumb>
+          <Breadcrumb.Section link>Home</Breadcrumb.Section>
+          <Breadcrumb.Divider icon="right angle" />
+          <Breadcrumb.Section active>Tags</Breadcrumb.Section>
+        </Breadcrumb>
+        <TagsCard data={tags} />
+      </div>
+    );
+  }
+}
 
 Tags.propTypes = {
   data: PropTypes.shape({
@@ -52,7 +54,15 @@ Tags.propTypes = {
   }),
 };
 
-export default Tags;
+const mapDispatchToProps = (dispatch, ownProps) => {
+  return {
+    setTagCardVisible: visible => {
+      dispatch(actionCreators.setTagCardVisible(visible));
+    },
+  };
+};
+
+export default connect(null, mapDispatchToProps)(Tags);
 
 export const pageQuery = graphql`
   query TagsQuery {
