@@ -1,13 +1,29 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Link from 'gatsby-link';
+import { Breadcrumb } from 'semantic-ui-react';
 import TagPostCardList from '../components/TagPostCardList';
 
 const Tags = ({ pathContext, data }) => {
   const { tag } = pathContext;
   const { edges, totalCount } = data.allMarkdownRemark;
 
-  return <TagPostCardList tag={tag} totalCount={totalCount} posts={edges} />;
+  return (
+    <div>
+      <Breadcrumb>
+        <Link className="section" to="/">
+          Home
+        </Link>
+        <Breadcrumb.Divider icon="right angle" />
+        <Link className="section" to="/tags">
+          Tags
+        </Link>
+        <Breadcrumb.Divider icon="right angle" />
+        <Breadcrumb.Section active>{tag}</Breadcrumb.Section>
+      </Breadcrumb>
+      <TagPostCardList tag={tag} totalCount={totalCount} posts={edges} />
+    </div>
+  );
 };
 
 Tags.propTypes = {

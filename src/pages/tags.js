@@ -26,7 +26,9 @@ class Tags extends Component {
     return (
       <div>
         <Breadcrumb>
-          <Breadcrumb.Section link>Home</Breadcrumb.Section>
+          <Link className="section" to="/">
+            Home
+          </Link>
           <Breadcrumb.Divider icon="right angle" />
           <Breadcrumb.Section active>Tags</Breadcrumb.Section>
         </Breadcrumb>
