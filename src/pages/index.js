@@ -1,26 +1,13 @@
 import React from 'react';
 import Link from 'gatsby-link';
-import { Grid } from 'semantic-ui-react';
 import PostCardList from '../components/PostCardList';
-import ProfileCard from '../components/ProfileCard';
-import MiniTagsCard from '../components/MiniTagsCard';
 
 const IndexPage = ({
   data: {
-    allMarkdownRemark: { edges, group },
+    allMarkdownRemark: { edges },
   },
 }) => {
-  return (
-    <Grid columns="equal">
-      <Grid.Column width={13}>
-        <PostCardList data={edges} />
-      </Grid.Column>
-      <Grid.Column width={3}>
-        <ProfileCard />
-        <MiniTagsCard data={group} />
-      </Grid.Column>
-    </Grid>
-  );
+  return <PostCardList data={edges} />;
 };
 
 export default IndexPage;
@@ -40,10 +27,6 @@ export const pageQuery = graphql`
             author
           }
         }
-      }
-      group(field: frontmatter___tags) {
-        fieldValue
-        totalCount
       }
     }
   }
