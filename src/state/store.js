@@ -30,11 +30,17 @@ const initialState = {
   tagCardVisible: true,
 };
 
+const actionCreators = {
+  setTagCardVisible,
+};
+
 const createStore = () =>
   reduxCreateStore(
     reducer,
     initialState,
     composeWithDevTools(applyMiddleware())
   );
+
+export { actionCreators };
 
 export default createStore;
