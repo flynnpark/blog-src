@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
 import Link from 'gatsby-link';
 import { connect } from 'react-redux';
-import { Breadcrumb } from 'semantic-ui-react';
+import { Breadcrumb, Header, Icon, Divider } from 'semantic-ui-react';
 
 import { actionCreators } from '../state/store';
 
@@ -32,6 +32,11 @@ class Tags extends Component {
           <Breadcrumb.Divider icon="right angle" />
           <Breadcrumb.Section active>Tags</Breadcrumb.Section>
         </Breadcrumb>
+        <Header as="h1">
+          <Icon name="tags" />
+          <Header.Content>Tags</Header.Content>
+        </Header>
+        <Divider />
         <TagsCard tags={tags} />
       </div>
     );
