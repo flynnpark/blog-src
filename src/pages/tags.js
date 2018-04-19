@@ -32,13 +32,14 @@ class Tags extends Component {
           <Breadcrumb.Divider icon="right angle" />
           <Breadcrumb.Section active>Tags</Breadcrumb.Section>
         </Breadcrumb>
-        <TagsCard data={tags} />
+        <TagsCard tags={tags} />
       </div>
     );
   }
 }
 
 Tags.propTypes = {
+  setTagCardVisible: PropTypes.func.isRequired,
   data: PropTypes.shape({
     allMarkdownRemark: PropTypes.shape({
       group: PropTypes.arrayOf(
@@ -47,11 +48,6 @@ Tags.propTypes = {
           totalCount: PropTypes.number.isRequired,
         }).isRequired
       ),
-    }),
-    site: PropTypes.shape({
-      siteMetadata: PropTypes.shape({
-        siteUrl: PropTypes.string.isRequired,
-      }),
     }),
   }),
 };
@@ -68,11 +64,6 @@ export default connect(null, mapDispatchToProps)(Tags);
 
 export const pageQuery = graphql`
   query TagsQuery {
-    site {
-      siteMetadata {
-        siteUrl
-      }
-    }
     allMarkdownRemark {
       group(field: frontmatter___tags) {
         fieldValue

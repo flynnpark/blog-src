@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import PostCard from './PostCard';
 import { Card, Icon, Item } from 'semantic-ui-react';
 
@@ -20,6 +21,24 @@ const PostCardList = ({ posts }) => {
       </Card.Content>
     </Card>
   );
+};
+
+PostCardList.propTypes = {
+  posts: PropTypes.arrayOf(
+    PropTypes.shape({
+      node: PropTypes.shape({
+        excerpt: PropTypes.string.isRequired,
+        fields: PropTypes.shape({
+          slug: PropTypes.string.isRequired,
+        }).isRequired,
+        frontmatter: PropTypes.shape({
+          date: PropTypes.string.isRequired,
+          title: PropTypes.string.isRequired,
+          author: PropTypes.string.isRequired,
+        }).isRequired,
+      }).isRequired,
+    })
+  ),
 };
 
 export default PostCardList;

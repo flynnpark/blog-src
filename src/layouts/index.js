@@ -10,8 +10,8 @@ import MiniTagsCard from '../components/MiniTagsCard';
 import 'semantic-ui-css/semantic.min.css';
 
 const Layout = ({
-  tagCardVisible,
   children,
+  tagCardVisible,
   data: {
     allMarkdownRemark: { group },
   },
@@ -33,7 +33,7 @@ const Layout = ({
           <Grid.Column width={13}>{children()}</Grid.Column>
           <Grid.Column width={3}>
             <ProfileCard />
-            {tagCardVisible && <MiniTagsCard data={group} />}
+            {tagCardVisible && <MiniTagsCard tags={group} />}
           </Grid.Column>
         </Grid>
       </Container>
@@ -43,6 +43,7 @@ const Layout = ({
 
 Layout.propTypes = {
   children: PropTypes.func,
+  tagCardVisible: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = (state, ownProps) => {
