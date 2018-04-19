@@ -18,8 +18,8 @@ const TagsCard = ({ tags }) => {
           {tags.map(tag => (
             <Link
               className="ui big label"
-              to={`/tags/${kebabCase(tag.fieldValue)}`}
               key={tag.fieldValue}
+              to={`/tags/${kebabCase(tag.fieldValue)}`}
             >
               {tag.fieldValue}
               <Label.Detail>{tag.totalCount}</Label.Detail>

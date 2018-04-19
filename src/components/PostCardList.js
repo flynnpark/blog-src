@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import PostCard from './PostCard';
 import { Card, Icon, Item } from 'semantic-ui-react';
+import PostCard from './PostCard';
 
 const PostCardList = ({ posts }) => {
   return (
