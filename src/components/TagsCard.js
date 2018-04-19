@@ -1,9 +1,10 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Link from 'gatsby-link';
 import kebabCase from 'lodash/kebabCase';
 import { Card, Icon, Label } from 'semantic-ui-react';
 
-const TagsCard = ({ data }) => {
+const TagsCard = ({ tags }) => {
   return (
     <Card fluid>
       <Card.Content>
@@ -14,7 +15,7 @@ const TagsCard = ({ data }) => {
       </Card.Content>
       <Card.Content>
         <Label.Group tag>
-          {data.map(tag => (
+          {tags.map(tag => (
             <Link
               className="ui big label"
               to={`/tags/${kebabCase(tag.fieldValue)}`}
@@ -28,6 +29,15 @@ const TagsCard = ({ data }) => {
       </Card.Content>
     </Card>
   );
+};
+
+TagsCard.propTypes = {
+  tags: PropTypes.arrayOf(
+    PropTypes.shape({
+      fieldValue: PropTypes.string.isRequired,
+      totalCount: PropTypes.number.isRequired,
+    }).isRequired
+  ),
 };
 
 export default TagsCard;

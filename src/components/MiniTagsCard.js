@@ -1,9 +1,10 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Link from 'gatsby-link';
 import kebabCase from 'lodash/kebabCase';
 import { Card, Icon, Label } from 'semantic-ui-react';
 
-const MiniTagsCard = ({ data }) => {
+const MiniTagsCard = ({ tags }) => {
   return (
     <Card>
       <Card.Content>
@@ -16,7 +17,7 @@ const MiniTagsCard = ({ data }) => {
       </Card.Content>
       <Card.Content>
         <Label.Group size="small">
-          {data.map(tag => (
+          {tags.map(tag => (
             <Link
               className="ui label"
               to={`/tags/${kebabCase(tag.fieldValue)}`}
@@ -30,6 +31,15 @@ const MiniTagsCard = ({ data }) => {
       </Card.Content>
     </Card>
   );
+};
+
+MiniTagsCard.propTypes = {
+  tags: PropTypes.arrayOf(
+    PropTypes.shape({
+      fieldValue: PropTypes.string.isRequired,
+      totalCount: PropTypes.number.isRequired,
+    }).isRequired
+  ),
 };
 
 export default MiniTagsCard;

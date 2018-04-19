@@ -7,7 +7,6 @@ import TagPostCardList from '../components/TagPostCardList';
 const Tags = ({ pathContext, data }) => {
   const { tag } = pathContext;
   const { edges, totalCount } = data.allMarkdownRemark;
-
   return (
     <div>
       <Breadcrumb>
@@ -29,21 +28,22 @@ const Tags = ({ pathContext, data }) => {
 Tags.propTypes = {
   pathContext: PropTypes.shape({
     tag: PropTypes.string.isRequired,
-  }),
+  }).isRequired,
   data: PropTypes.shape({
     allMarkdownRemark: PropTypes.shape({
       totalCount: PropTypes.number.isRequired,
       edges: PropTypes.arrayOf(
         PropTypes.shape({
           node: PropTypes.shape({
+            excerpt: PropTypes.string.isRequired,
             frontmatter: PropTypes.shape({
               title: PropTypes.string.isRequired,
-            }),
-          }),
+            }).isRequired,
+          }).isRequired,
         }).isRequired
       ),
-    }),
-  }),
+    }).isRequired,
+  }).isRequired,
 };
 
 export default Tags;
@@ -60,8 +60,12 @@ export const pageQuery = graphql`
           fields {
             slug
           }
+          excerpt(pruneLength: 200)
           frontmatter {
+            date(formatString: "MMMM DD, YYYY")
             title
+            author
+            tags
           }
         }
       }

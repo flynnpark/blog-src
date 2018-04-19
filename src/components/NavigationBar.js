@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Link from 'gatsby-link';
 import { Menu, Container } from 'semantic-ui-react';
 
@@ -16,6 +17,10 @@ const NavigationBar = ({ siteTitle }) => {
       </Container>
     </Menu>
   );
+};
+
+NavigationBar.propTypes = {
+  siteTitle: PropTypes.string.isRequired,
 };
 
 export default NavigationBar;
