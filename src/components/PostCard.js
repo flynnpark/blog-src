@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Link from 'gatsby-link';
+import kebabCase from 'lodash/kebabCase';
 import { Item, Label } from 'semantic-ui-react';
 
 const PostCard = ({ post }) => {
@@ -13,7 +14,19 @@ const PostCard = ({ post }) => {
             {post.frontmatter.title} ({post.frontmatter.date})
           </Link>
         </Item.Header>
-        <Item.Meta>{tags.map(tag => <Label>{tag}</Label>)}</Item.Meta>
+        <Item.Meta>
+          <Label.Group>
+            {tags.map((tag, index) => (
+              <Link
+                className="ui label"
+                key={index}
+                to={`/tags/${kebabCase(tag)}`}
+              >
+                {tag}
+              </Link>
+            ))}
+          </Label.Group>
+        </Item.Meta>
         <Item.Description>{post.excerpt}</Item.Description>
       </Item.Content>
     </Item>

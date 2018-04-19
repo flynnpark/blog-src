@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Link from 'gatsby-link';
-import { Breadcrumb } from 'semantic-ui-react';
+import { Breadcrumb, Header, Divider, Icon } from 'semantic-ui-react';
 import TagPostCardList from '../components/TagPostCardList';
 
 const Tags = ({ pathContext, data }) => {
@@ -20,6 +20,11 @@ const Tags = ({ pathContext, data }) => {
         <Breadcrumb.Divider icon="right angle" />
         <Breadcrumb.Section active>{tag}</Breadcrumb.Section>
       </Breadcrumb>
+      <Header as="h1">
+        <Icon name="tag" />
+        <Header.Content>{tag}</Header.Content>
+      </Header>
+      <Divider />
       <TagPostCardList tag={tag} totalCount={totalCount} posts={edges} />
     </div>
   );
