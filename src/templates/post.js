@@ -2,38 +2,43 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Link from 'gatsby-link';
 import kebabCase from 'lodash/kebabCase';
-import { Card, Icon, Label, Header } from 'semantic-ui-react';
+import {
+  Card,
+  Icon,
+  Label,
+  Header,
+  Divider,
+  Breadcrumb,
+} from 'semantic-ui-react';
 
 export default ({ data }) => {
   const post = data.markdownRemark;
   return (
     <div>
-      <Card fluid>
-        <Card.Content>
-          <Card.Header>
-            <Header>
-              {post.frontmatter.title}
-              <Header.Subheader>{post.frontmatter.date}</Header.Subheader>
-            </Header>
-          </Card.Header>
-          <Card.Meta>
-            <Label.Group>
-              {post.frontmatter.tags.map((tag, index) => (
-                <Link
-                  className="ui label"
-                  key={index}
-                  to={`/tags/${kebabCase(tag)}`}
-                >
-                  {tag}
-                </Link>
-              ))}
-            </Label.Group>
-          </Card.Meta>
-        </Card.Content>
-        <Card.Content>
-          <div dangerouslySetInnerHTML={{ __html: post.html }} />
-        </Card.Content>
-      </Card>
+      <Breadcrumb>
+        <Link className="section" to="/">
+          Home
+        </Link>
+        <Breadcrumb.Divider icon="right angle" />
+        <Link className="section" to="/posts">
+          Posts
+        </Link>
+        <Breadcrumb.Divider icon="right angle" />
+        <Breadcrumb.Section active>{post.frontmatter.title}</Breadcrumb.Section>
+      </Breadcrumb>
+      <Header as="h1">
+        {post.frontmatter.title}
+        <Header.Subheader as="span">{post.frontmatter.date}</Header.Subheader>
+      </Header>
+      <Label.Group>
+        {post.frontmatter.tags.map((tag, index) => (
+          <Link className="ui label" key={index} to={`/tags/${kebabCase(tag)}`}>
+            {tag}
+          </Link>
+        ))}
+      </Label.Group>
+      <Divider />
+      <div dangerouslySetInnerHTML={{ __html: post.html }} />
     </div>
   );
 };
