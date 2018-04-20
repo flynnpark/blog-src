@@ -8,11 +8,9 @@ const TagPostCardList = ({ tag, totalCount, posts }) => {
     totalCount === 1 ? '' : 's'
   } tagged with '${tag}'`;
   return (
-    <div>
-      <Item.Group divided>
-        {posts.map((post, index) => <PostCard key={index} post={post.node} />)}
-      </Item.Group>
-    </div>
+    <Item.Group divided>
+      {posts.map((post, index) => <PostCard key={index} post={post.node} />)}
+    </Item.Group>
   );
 };
 
