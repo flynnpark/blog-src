@@ -27,5 +27,8 @@ module.exports = {
         head: true,
       },
     },
+    {
+      resolve: 'gatsby-plugin-sitemap',
+    },
   ],
 };

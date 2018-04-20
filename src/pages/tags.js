@@ -7,7 +7,7 @@ import { Breadcrumb, Header, Icon, Divider } from 'semantic-ui-react';
 
 import { actionCreators } from '../state/store';
 
-import TagsCard from '../components/TagsCard';
+import TagsList from '../components/TagsList';
 import ProfileCard from '../components/ProfileCard';
 
 class Tags extends Component {
@@ -37,7 +37,7 @@ class Tags extends Component {
           <Header.Content>Tags</Header.Content>
         </Header>
         <Divider />
-        <TagsCard tags={tags} />
+        <TagsList tags={tags} />
       </div>
     );
   }

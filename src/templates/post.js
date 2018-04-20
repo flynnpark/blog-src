@@ -21,7 +21,7 @@ export default ({ data }) => {
       </Breadcrumb>
       <Header as="h1">
         {post.frontmatter.title}
-        <Header.Subheader as="span">{post.frontmatter.date}</Header.Subheader>
+        <Header.Subheader>{post.frontmatter.date}</Header.Subheader>
       </Header>
       <Label.Group>
         {post.frontmatter.tags.map((tag, index) => (

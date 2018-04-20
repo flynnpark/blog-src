@@ -57,7 +57,7 @@ export default connect(mapStateToProps)(Layout);
 
 export const query = graphql`
   query IndexTagsQuery {
-    allMarkdownRemark {
+    allMarkdownRemark(limit: 20) {
       group(field: frontmatter___tags) {
         fieldValue
         totalCount
