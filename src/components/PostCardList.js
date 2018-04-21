@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Link from 'gatsby-link';
 import { Breadcrumb, Header, Divider, Icon, Item } from 'semantic-ui-react';
 import PostCard from './PostCard';
 
@@ -19,6 +20,9 @@ const PostCardList = ({ posts }) => {
           .filter(edge => !!edge.node.frontmatter.date)
           .map((post, index) => <PostCard key={index} post={post.node} />)}
       </Item.Group>
+      <Link to="/posts">
+        <Icon name="arrow right" />View more posts
+      </Link>
     </div>
   );
 };
