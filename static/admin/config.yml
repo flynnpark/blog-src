@@ -1,6 +1,6 @@
 backend:
     name: github
-    repo: wphestiraid/blog
+    repo: wphestiraid/blog-posts
 
 media_folder: contents/media
 
