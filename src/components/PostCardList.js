@@ -7,9 +7,6 @@ import PostCard from './PostCard';
 const PostCardList = ({ posts }) => {
   return (
     <div>
-      <Breadcrumb>
-        <Breadcrumb.Section active>Home</Breadcrumb.Section>
-      </Breadcrumb>
       <Header as="h1">
         <Icon name="list" />
         <Header.Content>Recent Posts</Header.Content>
