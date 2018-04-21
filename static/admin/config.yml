@@ -7,7 +7,7 @@ media_folder: contents/media
 collections:
   - name: post
     label: Post
-    folder: posts
+    folder: contents/posts
     create: true
     fields:
       - {label: "Title", name: "title", widget: "string"}
