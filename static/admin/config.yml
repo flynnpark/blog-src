@@ -1,9 +1,8 @@
 backend:
     name: github
-    repo: wphestiraid/netlify-cms-test
+    repo: wphestiraid/blog-posts
 
-media_folder: static/img
-public_folder: /img
+media_folder: assets
 
 collections:
     - name: blog
