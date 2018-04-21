@@ -1,6 +1,6 @@
 backend:
     name: github
-    repo: wphestiraid/blog-posts
+    repo: wphestiraid/blog
 
 media_folder: assets
 
