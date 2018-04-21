@@ -7,11 +7,12 @@ module.exports = {
   plugins: [
     'gatsby-plugin-react-helmet',
     'gatsby-transformer-remark',
+    'gatsby-plugin-netlify-cms',
     {
       resolve: 'gatsby-source-filesystem',
       options: {
-        name: 'blog-posts',
-        path: `${__dirname}/blog-posts/posts/`,
+        name: 'contents',
+        path: `${__dirname}/blog-posts/contents/`,
       },
     },
     {
