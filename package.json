@@ -3,13 +3,11 @@
   "description": "Gatsby default starter",
   "version": "1.0.0",
   "author": "Kyle Mathews <mathews.kyle@gmail.com>",
-  "keywords": [
-    "gatsby",
-    "blog"
-  ],
+  "keywords": ["gatsby", "blog"],
   "license": "MIT",
   "scripts": {
-    "build": "gatsby build",
+    "update-content": "git submodule update --init --remote",
+    "build": "yarn update-content && gatsby build",
     "develop": "gatsby develop",
     "format": "prettier --write 'src/**/*.js'",
     "test": "echo \"Error: no test specified\" && exit 1"
