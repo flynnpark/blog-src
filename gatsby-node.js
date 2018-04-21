@@ -16,7 +16,7 @@ exports.onCreateNode = ({ node, getNode, boundActionCreators }) => {
     const postSlug = createFilePath({
       node,
       getNode,
-      bastPath: 'blog-posts/posts',
+      bastPath: 'blog-posts/contents',
     });
     const slug = categorySlug + postSlug;
     createNodeField({
