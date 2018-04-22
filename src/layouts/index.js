@@ -29,11 +29,11 @@ const Layout = ({
       />
       <NavigationBar siteTitle={title} />
       <Container style={{ marginTop: '6em' }}>
-        <Grid columns="equal">
+        <Grid stackable columns="equal">
           <Grid.Column width={13}>{children()}</Grid.Column>
           <Grid.Column width={3}>
             <ProfileCard />
-            {tagCardVisible && <MiniTagsCard tags={group} />}
+            <MiniTagsCard tags={group} />
           </Grid.Column>
         </Grid>
       </Container>

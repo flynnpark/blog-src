@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
 import Link from 'gatsby-link';
 import { connect } from 'react-redux';
-import { Breadcrumb, Header, Icon, Divider } from 'semantic-ui-react';
+import { Breadcrumb, Header, Icon } from 'semantic-ui-react';
 
 import { actionCreators } from '../state/store';
 
@@ -23,6 +23,7 @@ class Tags extends Component {
 
   render() {
     const tags = this.props.data.allMarkdownRemark.group;
+    const totalCount = this.props.data.allMarkdownRemark.totalCount;
     return (
       <div>
         <Breadcrumb>
@@ -33,10 +34,10 @@ class Tags extends Component {
           <Breadcrumb.Section active>Tags</Breadcrumb.Section>
         </Breadcrumb>
         <Header as="h1">
-          <Icon name="tags" />
-          <Header.Content>Tags</Header.Content>
+          Tags<Header.Subheader>
+            총 {totalCount}개의 태그가 있습니다.
+          </Header.Subheader>
         </Header>
-        <Divider />
         <TagsList tags={tags} />
       </div>
     );
@@ -70,6 +71,7 @@ export default connect(null, mapDispatchToProps)(Tags);
 export const pageQuery = graphql`
   query TagsQuery {
     allMarkdownRemark {
+      totalCount
       group(field: frontmatter___tags) {
         fieldValue
         totalCount

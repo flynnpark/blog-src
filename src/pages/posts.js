@@ -1,9 +1,10 @@
 import React from 'react';
 import Link from 'gatsby-link';
-import { Breadcrumb, Header, Icon, Divider, Item } from 'semantic-ui-react';
+import { Breadcrumb, Header, Icon, Item } from 'semantic-ui-react';
 import PostCard from '../components/PostCard';
 
 const Posts = ({ data }) => {
+  const totalCount = data.allMarkdownRemark.totalCount;
   const posts = data.allMarkdownRemark.edges;
   return (
     <div>
@@ -15,10 +16,10 @@ const Posts = ({ data }) => {
         <Breadcrumb.Section active>Posts</Breadcrumb.Section>
       </Breadcrumb>
       <Header as="h1">
-        <Icon name="pencil" />
-        <Header.Content>Posts</Header.Content>
+        Posts<Header.Subheader>
+          총 {totalCount}개의 글이 있습니다.
+        </Header.Subheader>
       </Header>
-      <Divider />
       <Item.Group divided>
         {posts
           .filter(edge => !!edge.node.frontmatter.date)
@@ -33,6 +34,7 @@ export default Posts;
 export const pageQuery = graphql`
   query PostsQuery {
     allMarkdownRemark(sort: { order: DESC, fields: [frontmatter___date] }) {
+      totalCount
       edges {
         node {
           fields {
