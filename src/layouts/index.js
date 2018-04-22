@@ -7,6 +7,7 @@ import globalConfig from '../../global-config';
 import NavigationBar from '../components/NavigationBar';
 import ProfileCard from '../components/ProfileCard';
 import MiniTagsCard from '../components/MiniTagsCard';
+import Footer from '../components/Footer';
 import 'semantic-ui-css/semantic.min.css';
 
 const Layout = ({
@@ -34,6 +35,7 @@ const Layout = ({
           <Grid.Column width={3}>
             <ProfileCard />
             <MiniTagsCard tags={group} />
+            <Footer />
           </Grid.Column>
         </Grid>
       </Container>
