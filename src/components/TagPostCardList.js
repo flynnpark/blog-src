@@ -4,9 +4,6 @@ import { Icon, Item } from 'semantic-ui-react';
 import PostCard from './PostCard';
 
 const TagPostCardList = ({ tag, totalCount, posts }) => {
-  const tagInfo = `${totalCount} post${
-    totalCount === 1 ? '' : 's'
-  } tagged with '${tag}'`;
   return (
     <Item.Group divided>
       {posts.map((post, index) => <PostCard key={index} post={post.node} />)}

@@ -1,17 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Link from 'gatsby-link';
-import { Breadcrumb, Header, Divider, Icon, Item } from 'semantic-ui-react';
+import { Header, Divider, Icon, Item } from 'semantic-ui-react';
 import PostCard from './PostCard';
 
 const PostCardList = ({ posts }) => {
   return (
     <div>
       <Header as="h1">
-        <Icon name="list" />
         <Header.Content>Recent Posts</Header.Content>
       </Header>
-      <Divider />
       <Item.Group divided>
         {posts
           .filter(edge => !!edge.node.frontmatter.date)

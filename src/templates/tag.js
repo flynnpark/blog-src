@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Link from 'gatsby-link';
-import { Breadcrumb, Header, Divider, Icon } from 'semantic-ui-react';
+import { Breadcrumb, Header, Icon } from 'semantic-ui-react';
 import TagPostCardList from '../components/TagPostCardList';
 
 const Tags = ({ pathContext, data }) => {
@@ -21,10 +21,9 @@ const Tags = ({ pathContext, data }) => {
         <Breadcrumb.Section active>{tag}</Breadcrumb.Section>
       </Breadcrumb>
       <Header as="h1">
-        <Icon name="tag" />
-        <Header.Content>{tag}</Header.Content>
+        {tag}
+        <Header.Subheader>총 {totalCount}개의 글이 있습니다.</Header.Subheader>
       </Header>
-      <Divider />
       <TagPostCardList tag={tag} totalCount={totalCount} posts={edges} />
     </div>
   );
