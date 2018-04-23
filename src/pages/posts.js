@@ -1,30 +1,20 @@
 import React from 'react';
 import Link from 'gatsby-link';
 import { Breadcrumb, Header, Icon, Item } from 'semantic-ui-react';
-import PostCard from '../components/PostCard';
+import PostCardList from '../components/PostCardList';
 
 const Posts = ({ data }) => {
-  const totalCount = data.allMarkdownRemark.totalCount;
-  const posts = data.allMarkdownRemark.edges;
+  const { numOfPosts, posts } = data.allMarkdownRemark;
   return (
     <div>
-      <Breadcrumb>
+      <Breadcrumb style={{ marginBottom: '2em' }}>
         <Link className="section" to="/">
           Home
         </Link>
         <Breadcrumb.Divider icon="right angle" />
         <Breadcrumb.Section active>Posts</Breadcrumb.Section>
       </Breadcrumb>
-      <Header as="h1">
-        Posts<Header.Subheader>
-          총 {totalCount}개의 글이 있습니다.
-        </Header.Subheader>
-      </Header>
-      <Item.Group divided>
-        {posts
-          .filter(edge => !!edge.node.frontmatter.date)
-          .map((post, index) => <PostCard key={index} post={post.node} />)}
-      </Item.Group>
+      <PostCardList listHeader="Posts" numOfPosts={numOfPosts} posts={posts} />
     </div>
   );
 };
@@ -34,8 +24,8 @@ export default Posts;
 export const pageQuery = graphql`
   query PostsQuery {
     allMarkdownRemark(sort: { order: DESC, fields: [frontmatter___date] }) {
-      totalCount
-      edges {
+      numOfPosts: totalCount
+      posts: edges {
         node {
           fields {
             slug
@@ -44,7 +34,6 @@ export const pageQuery = graphql`
           frontmatter {
             date(formatString: "MMMM DD, YYYY")
             title
-            author
             tags
           }
         }

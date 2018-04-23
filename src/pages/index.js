@@ -1,13 +1,22 @@
 import React from 'react';
 import Link from 'gatsby-link';
+import { Icon } from 'semantic-ui-react';
 import PostCardList from '../components/PostCardList';
 
-const IndexPage = ({
-  data: {
-    allMarkdownRemark: { edges },
-  },
-}) => {
-  return <PostCardList posts={edges} />;
+const IndexPage = ({ data }) => {
+  const { numOfPosts, posts } = data.allMarkdownRemark;
+  return (
+    <div>
+      <PostCardList
+        listHeader="Recent Posts"
+        numOfPosts={numOfPosts}
+        posts={posts}
+      />
+      <Link to="/posts">
+        <Icon name="arrow right" />View more posts
+      </Link>
+    </div>
+  );
 };
 
 export default IndexPage;
@@ -18,7 +27,8 @@ export const pageQuery = graphql`
       limit: 10
       sort: { order: DESC, fields: [frontmatter___date] }
     ) {
-      edges {
+      numOfPosts: totalCount
+      posts: edges {
         node {
           fields {
             slug
@@ -27,7 +37,6 @@ export const pageQuery = graphql`
           frontmatter {
             date(formatString: "MMMM DD, YYYY")
             title
-            author
             tags
           }
         }
