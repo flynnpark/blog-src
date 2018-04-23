@@ -1,8 +1,10 @@
-const siteUrl = 'https://blog.flynndev.xyz';
+const globalConfig = require('./global-config');
 
 module.exports = {
   siteMetadata: {
-    siteUrl,
+    title: globalConfig.siteTitle,
+    description: globalConfig.description,
+    siteUrl: globalConfig.siteUrl,
   },
   plugins: [
     'gatsby-plugin-react-helmet',
@@ -18,7 +20,7 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-canonical-urls',
       options: {
-        siteUrl: siteUrl,
+        siteUrl: globalConfig.siteUrl,
       },
     },
     {
