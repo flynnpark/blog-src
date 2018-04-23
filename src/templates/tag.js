@@ -2,14 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Link from 'gatsby-link';
 import { Breadcrumb, Header, Icon } from 'semantic-ui-react';
-import TagPostCardList from '../components/TagPostCardList';
+import PostCardList from '../components/PostCardList';
 
-const Tags = ({ pathContext, data }) => {
+const TagDetail = ({ pathContext, data }) => {
   const { tag } = pathContext;
-  const { edges, totalCount } = data.allMarkdownRemark;
+  const { numOfPosts, posts } = data.allMarkdownRemark;
   return (
     <div>
-      <Breadcrumb>
+      <Breadcrumb style={{ marginBottom: '2em' }}>
         <Link className="section" to="/">
           Home
         </Link>
@@ -20,23 +20,16 @@ const Tags = ({ pathContext, data }) => {
         <Breadcrumb.Divider icon="right angle" />
         <Breadcrumb.Section active>{tag}</Breadcrumb.Section>
       </Breadcrumb>
-      <Header as="h1">
-        {tag}
-        <Header.Subheader>총 {totalCount}개의 글이 있습니다.</Header.Subheader>
-      </Header>
-      <TagPostCardList tag={tag} totalCount={totalCount} posts={edges} />
+      <PostCardList listHeader={tag} numOfPosts={numOfPosts} posts={posts} />
     </div>
   );
 };
 
-Tags.propTypes = {
-  pathContext: PropTypes.shape({
-    tag: PropTypes.string.isRequired,
-  }).isRequired,
+TagDetail.propTypes = {
   data: PropTypes.shape({
     allMarkdownRemark: PropTypes.shape({
-      totalCount: PropTypes.number.isRequired,
-      edges: PropTypes.arrayOf(
+      numOfPosts: PropTypes.number.isRequired,
+      posts: PropTypes.arrayOf(
         PropTypes.shape({
           node: PropTypes.shape({
             excerpt: PropTypes.string.isRequired,
@@ -50,7 +43,7 @@ Tags.propTypes = {
   }).isRequired,
 };
 
-export default Tags;
+export default TagDetail;
 
 export const pageQuery = graphql`
   query TagPage($tag: String) {
@@ -58,8 +51,8 @@ export const pageQuery = graphql`
       sort: { fields: [frontmatter___date], order: DESC }
       filter: { frontmatter: { tags: { in: [$tag] } } }
     ) {
-      totalCount
-      edges {
+      numOfPosts: totalCount
+      posts: edges {
         node {
           fields {
             slug
@@ -68,7 +61,6 @@ export const pageQuery = graphql`
           frontmatter {
             date(formatString: "MMMM DD, YYYY")
             title
-            author
             tags
           }
         }

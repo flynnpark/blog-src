@@ -8,7 +8,7 @@ const ProfileCard = () => {
   const { nickname, realname, job, github } = globalConfig;
 
   return (
-    <Card>
+    <Card fluid>
       <Image src={profileImage} alt="프로필 이미지" />
       <Card.Content>
         <Card.Header>

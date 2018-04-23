@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
 import Link from 'gatsby-link';
 import { connect } from 'react-redux';
-import { Breadcrumb, Header, Icon } from 'semantic-ui-react';
+import { Breadcrumb } from 'semantic-ui-react';
 
 import { actionCreators } from '../state/store';
 
@@ -22,23 +22,17 @@ class Tags extends Component {
   }
 
   render() {
-    const tags = this.props.data.allMarkdownRemark.group;
-    const totalCount = this.props.data.allMarkdownRemark.totalCount;
+    const { numOfTags, tags } = this.props.data.allMarkdownRemark;
     return (
       <div>
-        <Breadcrumb>
+        <Breadcrumb style={{ marginBottom: '2em' }}>
           <Link className="section" to="/">
             Home
           </Link>
           <Breadcrumb.Divider icon="right angle" />
           <Breadcrumb.Section active>Tags</Breadcrumb.Section>
         </Breadcrumb>
-        <Header as="h1">
-          Tags<Header.Subheader>
-            총 {totalCount}개의 태그가 있습니다.
-          </Header.Subheader>
-        </Header>
-        <TagsList tags={tags} />
+        <TagsList tags={tags} numOfTags={numOfTags} />
       </div>
     );
   }
@@ -48,7 +42,8 @@ Tags.propTypes = {
   setTagCardVisible: PropTypes.func.isRequired,
   data: PropTypes.shape({
     allMarkdownRemark: PropTypes.shape({
-      group: PropTypes.arrayOf(
+      numOfTags: PropTypes.number.isRequired,
+      tags: PropTypes.arrayOf(
         PropTypes.shape({
           fieldValue: PropTypes.string.isRequired,
           totalCount: PropTypes.number.isRequired,
@@ -71,8 +66,8 @@ export default connect(null, mapDispatchToProps)(Tags);
 export const pageQuery = graphql`
   query TagsQuery {
     allMarkdownRemark {
-      totalCount
-      group(field: frontmatter___tags) {
+      numOfTags: totalCount
+      tags: group(field: frontmatter___tags) {
         fieldValue
         totalCount
       }

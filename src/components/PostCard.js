@@ -40,7 +40,6 @@ PostCard.propTypes = {
       slug: PropTypes.string.isRequired,
     }).isRequired,
     frontmatter: PropTypes.shape({
-      author: PropTypes.string.isRequired,
       date: PropTypes.string.isRequired,
       title: PropTypes.string.isRequired,
       tags: PropTypes.arrayOf(PropTypes.string.isRequired),

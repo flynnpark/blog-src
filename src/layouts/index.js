@@ -12,29 +12,28 @@ import 'semantic-ui-css/semantic.min.css';
 
 const Layout = ({
   children,
-  tagCardVisible,
   data: {
-    allMarkdownRemark: { group },
+    allMarkdownRemark: { tags },
   },
 }) => {
-  const { title, author, description, keywords } = globalConfig;
+  const { siteTitle, author, description, keywords } = globalConfig;
   return (
     <Container fluid>
       <Helmet
-        title={title}
+        title={siteTitle}
         meta={[
           { name: 'author', content: `${author}` },
           { name: 'description', content: `${description}` },
           { name: 'keywords', content: `${keywords}` },
         ]}
       />
-      <NavigationBar siteTitle={title} />
+      <NavigationBar siteTitle={siteTitle} />
       <Container style={{ marginTop: '6em' }}>
         <Grid stackable columns="equal">
           <Grid.Column width={13}>{children()}</Grid.Column>
           <Grid.Column width={3}>
             <ProfileCard />
-            <MiniTagsCard tags={group} />
+            <MiniTagsCard tags={tags} />
             <Footer />
           </Grid.Column>
         </Grid>
@@ -44,8 +43,8 @@ const Layout = ({
 };
 
 Layout.propTypes = {
+  data: PropTypes.object.isRequired,
   children: PropTypes.func,
-  tagCardVisible: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = (state, ownProps) => {
@@ -58,11 +57,11 @@ const mapStateToProps = (state, ownProps) => {
 export default connect(mapStateToProps)(Layout);
 
 export const query = graphql`
-  query IndexTagsQuery {
+  query LayoutQuery {
     allMarkdownRemark(limit: 20) {
-      group(field: frontmatter___tags) {
-        fieldValue
-        totalCount
+      tags: group(field: frontmatter___tags) {
+        tagName: fieldValue
+        postCount: totalCount
       }
     }
   }

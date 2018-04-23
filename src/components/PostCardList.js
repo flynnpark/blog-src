@@ -4,25 +4,29 @@ import Link from 'gatsby-link';
 import { Header, Divider, Icon, Item } from 'semantic-ui-react';
 import PostCard from './PostCard';
 
-const PostCardList = ({ posts }) => {
+const PostCardList = ({ listHeader, numOfPosts, posts }) => {
   return (
     <div>
       <Header as="h1">
-        <Header.Content>Recent Posts</Header.Content>
+        <Header.Content>{listHeader}</Header.Content>
+        {numOfPosts && (
+          <Header.Subheader>
+            A collection of {numOfPosts} post{numOfPosts === 1 ? '' : 's'}
+          </Header.Subheader>
+        )}
       </Header>
-      <Item.Group divided>
+      <Item.Group divided style={{ marginTop: '2.5em' }}>
         {posts
           .filter(edge => !!edge.node.frontmatter.date)
           .map((post, index) => <PostCard key={index} post={post.node} />)}
       </Item.Group>
-      <Link to="/posts">
-        <Icon name="arrow right" />View more posts
-      </Link>
     </div>
   );
 };
 
 PostCardList.propTypes = {
+  listHeader: PropTypes.string.isRequired,
+  numOfPosts: PropTypes.number.isRequired,
   posts: PropTypes.arrayOf(
     PropTypes.shape({
       node: PropTypes.shape({
@@ -33,7 +37,7 @@ PostCardList.propTypes = {
         frontmatter: PropTypes.shape({
           date: PropTypes.string.isRequired,
           title: PropTypes.string.isRequired,
-          author: PropTypes.string.isRequired,
+          tags: PropTypes.arrayOf(PropTypes.string.isRequired),
         }).isRequired,
       }).isRequired,
     })

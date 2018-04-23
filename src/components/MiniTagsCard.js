@@ -20,11 +20,11 @@ const MiniTagsCard = ({ tags }) => {
           {tags.map(tag => (
             <Link
               className="ui label"
-              to={`/tags/${kebabCase(tag.fieldValue)}`}
-              key={tag.fieldValue}
+              to={`/tags/${kebabCase(tag.tagName)}`}
+              key={tag.tagName}
             >
-              {tag.fieldValue}
-              <Label.Detail>{tag.totalCount}</Label.Detail>
+              {tag.tagName}
+              <Label.Detail>{tag.postCount}</Label.Detail>
             </Link>
           ))}
         </Label.Group>
@@ -36,8 +36,8 @@ const MiniTagsCard = ({ tags }) => {
 MiniTagsCard.propTypes = {
   tags: PropTypes.arrayOf(
     PropTypes.shape({
-      fieldValue: PropTypes.string.isRequired,
-      totalCount: PropTypes.number.isRequired,
+      tagName: PropTypes.string.isRequired,
+      postCount: PropTypes.number.isRequired,
     }).isRequired
   ),
 };
