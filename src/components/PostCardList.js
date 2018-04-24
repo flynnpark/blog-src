@@ -4,14 +4,17 @@ import Link from 'gatsby-link';
 import { Header, Divider, Icon, Item } from 'semantic-ui-react';
 import PostCard from './PostCard';
 
-const PostCardList = ({ listHeader, numOfPosts, posts }) => {
+const PostCardList = ({ listHeader, numOfPosts, posts, type }) => {
   return (
     <div>
       <Header as="h1">
         <Header.Content>{listHeader}</Header.Content>
         {numOfPosts && (
           <Header.Subheader>
-            A collection of {numOfPosts} post{numOfPosts === 1 ? '' : 's'}
+            A collection of {numOfPosts} {type && 'latest'} post{numOfPosts ===
+              1
+                ? ''
+                : 's'}
           </Header.Subheader>
         )}
       </Header>
