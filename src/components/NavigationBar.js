@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Link from 'gatsby-link';
-import { Menu, Container } from 'semantic-ui-react';
+import { Menu, Container, Input, Search } from 'semantic-ui-react';
 
 const NavigationBar = ({ siteTitle }) => {
   return (
@@ -10,9 +10,12 @@ const NavigationBar = ({ siteTitle }) => {
         <Link className="header item" to="/">
           {siteTitle}
         </Link>
+        <Menu.Item as="a">About</Menu.Item>
 
         <Menu.Menu position="right">
-          <Menu.Item as="a" name="About" />
+          <Menu.Item>
+            <Search as={Input} placeholder="Search..." size="mini" />
+          </Menu.Item>
         </Menu.Menu>
       </Container>
     </Menu>
