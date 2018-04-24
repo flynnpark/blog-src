@@ -19,14 +19,6 @@ const Layout = ({
   const { siteTitle, author, description, keywords } = globalConfig;
   return (
     <Container fluid>
-      <Helmet
-        title={siteTitle}
-        meta={[
-          { name: 'author', content: `${author}` },
-          { name: 'description', content: `${description}` },
-          { name: 'keywords', content: `${keywords}` },
-        ]}
-      />
       <NavigationBar siteTitle={siteTitle} />
       <Container style={{ marginTop: '6em' }}>
         <Grid stackable columns="equal">

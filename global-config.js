@@ -11,4 +11,5 @@ module.exports = {
   email: 'wphestiraid@gmail.com',
   github: 'wphestiraid',
   disqusShortname: 'flynndev',
+  siteLanguage: 'ko',
 };
