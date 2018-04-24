@@ -15,7 +15,7 @@ const TagsCard = ({ tags, totalCount }) => {
       <Label.Group tag style={{ marginTop: '2.5em' }}>
         {tags.map(tag => (
           <Link
-            className="ui big label"
+            className="ui large label"
             key={tag.fieldValue}
             to={`/tags/${kebabCase(tag.fieldValue)}`}
           >

@@ -3,12 +3,14 @@ import PropTypes from 'prop-types';
 import Link from 'gatsby-link';
 import kebabCase from 'lodash/kebabCase';
 import { Icon, Label, Header, Divider, Breadcrumb } from 'semantic-ui-react';
+import Seo from '../components/Seo';
 import Disqus from '../components/Disqus';
 
 const PostDetail = ({ data }) => {
   const post = data.markdownRemark;
   return (
     <div>
+      <Seo data={post} />
       <Breadcrumb style={{ marginBottom: '2em' }}>
         <Link className="section" to="/">
           Home

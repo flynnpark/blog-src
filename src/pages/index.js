@@ -11,10 +11,13 @@ const IndexPage = ({ data }) => {
         listHeader="Recent Posts"
         numOfPosts={numOfPosts}
         posts={posts}
+        type={'recents'}
       />
-      <Link to="/posts">
-        <Icon name="arrow right" />View more posts
-      </Link>
+      <div style={{ marginTop: '2em' }}>
+        <Link to="/posts">
+          <Icon name="arrow right" />View more posts
+        </Link>
+      </div>
     </div>
   );
 };
