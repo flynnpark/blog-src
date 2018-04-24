@@ -10,4 +10,5 @@ module.exports = {
   keywords: ['dev', 'blog', '개발', '블로그'],
   email: 'wphestiraid@gmail.com',
   github: 'wphestiraid',
+  disqusShortname: 'flynndev',
 };

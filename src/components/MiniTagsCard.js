@@ -6,7 +6,7 @@ import { Card, Icon, Label } from 'semantic-ui-react';
 
 const MiniTagsCard = ({ tags }) => {
   return (
-    <Card>
+    <Card fluid>
       <Card.Content>
         <Card.Header>
           <Link to="/tags">
