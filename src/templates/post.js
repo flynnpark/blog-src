@@ -38,7 +38,10 @@ const PostDetail = ({ data }) => {
           ))}
         </Label.Group>
         <Divider style={{ marginTop: '2em', marginBottom: '2em' }} />
-        <div dangerouslySetInnerHTML={{ __html: post.html }} />
+        <div
+          dangerouslySetInnerHTML={{ __html: post.html }}
+          style={{ marginBottom: '2em' }}
+        />
         <Disqus postNode={post} />
       </div>
     </div>
