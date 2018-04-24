@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Link from 'gatsby-link';
 import kebabCase from 'lodash/kebabCase';
 import { Icon, Label, Header, Divider, Breadcrumb } from 'semantic-ui-react';
+import Disqus from '../components/Disqus';
 
 const PostDetail = ({ data }) => {
   const post = data.markdownRemark;
@@ -37,7 +38,11 @@ const PostDetail = ({ data }) => {
           ))}
         </Label.Group>
         <Divider style={{ marginTop: '2em', marginBottom: '2em' }} />
-        <div dangerouslySetInnerHTML={{ __html: post.html }} />
+        <div
+          dangerouslySetInnerHTML={{ __html: post.html }}
+          style={{ marginBottom: '2em' }}
+        />
+        <Disqus postNode={post} />
       </div>
     </div>
   );
@@ -61,6 +66,9 @@ export default PostDetail;
 export const query = graphql`
   query BlogPostQuery($slug: String!) {
     markdownRemark(fields: { slug: { eq: $slug } }) {
+      fields {
+        slug
+      }
       html
       frontmatter {
         date(formatString: "MMMM DD, YYYY")

@@ -3,7 +3,10 @@
   "description": "Gatsby default starter",
   "version": "1.0.0",
   "author": "Kyle Mathews <mathews.kyle@gmail.com>",
-  "keywords": ["gatsby", "blog"],
+  "keywords": [
+    "gatsby",
+    "blog"
+  ],
   "license": "MIT",
   "scripts": {
     "update-contents": "git submodule update --init --remote",
@@ -23,6 +26,7 @@
     "gatsby-source-filesystem": "^1.5.32",
     "gatsby-transformer-remark": "^1.7.40",
     "netlify-cms": "^1.6.0",
+    "react-disqus-comments": "^1.2.0",
     "react-helmet": "^5.2.0",
     "react-redux": "^5.0.7",
     "redux": "^4.0.0",
