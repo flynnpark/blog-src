@@ -1,12 +1,14 @@
 import React from 'react';
 import Link from 'gatsby-link';
 import { Breadcrumb, Header, Icon, Item } from 'semantic-ui-react';
+import Seo from '../components/Seo';
 import PostCardList from '../components/PostCardList';
 
 const Posts = ({ data }) => {
   const { numOfPosts, posts } = data.allMarkdownRemark;
   return (
     <div>
+      <Seo />
       <Breadcrumb style={{ marginBottom: '2em' }}>
         <Link className="section" to="/">
           Home
