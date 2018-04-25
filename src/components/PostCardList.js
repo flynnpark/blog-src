@@ -12,9 +12,9 @@ const PostCardList = ({ listHeader, numOfPosts, posts, type }) => {
         {numOfPosts && (
           <Header.Subheader>
             A collection of {numOfPosts} {type && 'latest'} post{numOfPosts ===
-              1
-                ? ''
-                : 's'}
+            1
+              ? ''
+              : 's'}
           </Header.Subheader>
         )}
       </Header>

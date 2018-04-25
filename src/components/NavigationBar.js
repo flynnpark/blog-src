@@ -35,7 +35,6 @@ class NavigationBar extends Component {
       .search(value)
       .map(({ ref }) => this.index.documentStore.getDoc(ref));
     const simpleResults = [];
-
     rawResults.map(({ title, tags }, index) => {
       const nextResult = {
         id: index,
@@ -55,8 +54,13 @@ class NavigationBar extends Component {
   getOrCreateIndex = () =>
     this.index ? this.index : Index.load(this.props.searchData.index);
 
-  setCustomRenderer = props => {
-    return CustomRenderer({ ...this.state, currentResult: props });
+  setCustomRenderer = resultProps => {
+    const { allPosts } = this.props;
+    return CustomRenderer({
+      ...this.state,
+      allPosts,
+      currentResult: resultProps,
+    });
   };
   render() {
     const { isLoading, value, simpleResults } = this.state;
@@ -95,20 +99,23 @@ class NavigationBar extends Component {
 const CustomRenderer = props => {
   const {
     currentResult: { id, title },
+    allPosts: { edges },
     rawResults,
   } = props;
   const tags = rawResults[id].tags;
+  const rawId = rawResults[id].id;
+  const slug = edges.filter(edge => edge.node.id === rawId)[0].node.fields.slug;
   return (
-    <div>
+    <Link to={slug}>
       <Header as="h5">{title}</Header>
       <Label.Group>
         {tags.map((tag, index) => (
-          <Link className="ui label" key={index} to={`/tags/${kebabCase(tag)}`}>
+          <Label key={index} size="mini">
             {tag}
-          </Link>
+          </Label>
         ))}
       </Label.Group>
-    </div>
+    </Link>
   );
 };
 

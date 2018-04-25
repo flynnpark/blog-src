@@ -14,13 +14,18 @@ const Layout = ({
   children,
   data: {
     siteSearchIndex,
-    allMarkdownRemark: { tags },
+    recentTags: { tags },
+    allPosts,
   },
 }) => {
   const { siteTitle } = globalConfig;
   return (
     <Container fluid>
-      <NavigationBar siteTitle={siteTitle} searchData={siteSearchIndex} />
+      <NavigationBar
+        siteTitle={siteTitle}
+        allPosts={allPosts}
+        searchData={siteSearchIndex}
+      />
       <Container style={{ marginTop: '6em' }}>
         <Grid stackable columns="equal">
           <Grid.Column width={13}>{children()}</Grid.Column>
@@ -54,10 +59,20 @@ export const query = graphql`
     siteSearchIndex {
       index
     }
-    allMarkdownRemark(limit: 20) {
+    recentTags: allMarkdownRemark(limit: 20) {
       tags: group(field: frontmatter___tags) {
         tagName: fieldValue
         postCount: totalCount
+      }
+    }
+    allPosts: allMarkdownRemark {
+      edges {
+        node {
+          id
+          fields {
+            slug
+          }
+        }
       }
     }
   }
