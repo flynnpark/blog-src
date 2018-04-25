@@ -19,35 +19,47 @@ class NavigationBar extends Component {
   }
 
   resetComponent() {
-    this.setState({ isLoading: false, results: [], value: '' });
+    this.setState({
+      isLoading: false,
+      simpleResults: [],
+      rawResults: [],
+      value: '',
+    });
   }
 
   handleSearchChange = (e, { value }) => {
     this.setState({ isLoading: true, value });
     this.index = this.getOrCreateIndex();
+
     const rawResults = this.index
       .search(value)
       .map(({ ref }) => this.index.documentStore.getDoc(ref));
-    const nextResults = [];
-    rawResults.map(result => {
-      const { title, tags } = result;
+    const simpleResults = [];
+
+    rawResults.map(({ title, tags }, index) => {
       const nextResult = {
+        id: index,
         title,
       };
-      nextResults.push(nextResult);
+      simpleResults.push(nextResult);
     });
+
     this.setState({
       isLoading: false,
       value,
-      results: nextResults,
+      simpleResults,
+      rawResults,
     });
   };
 
   getOrCreateIndex = () =>
     this.index ? this.index : Index.load(this.props.searchData.index);
 
+  setCustomRenderer = props => {
+    return CustomRenderer({ ...this.state, currentResult: props });
+  };
   render() {
-    const { isLoading, value, results } = this.state;
+    const { isLoading, value, simpleResults } = this.state;
     const { siteTitle } = this.props;
     return (
       <Menu borderless fixed="top" inverted size="huge">
@@ -68,7 +80,8 @@ class NavigationBar extends Component {
                 onSearchChange={_.debounce(this.handleSearchChange, 500, {
                   leading: true,
                 })}
-                results={results}
+                resultRenderer={this.setCustomRenderer}
+                results={simpleResults}
                 value={value}
               />
             </Menu.Item>
@@ -78,6 +91,26 @@ class NavigationBar extends Component {
     );
   }
 }
+
+const CustomRenderer = props => {
+  const {
+    currentResult: { id, title },
+    rawResults,
+  } = props;
+  const tags = rawResults[id].tags;
+  return (
+    <div>
+      <Header as="h5">{title}</Header>
+      <Label.Group>
+        {tags.map((tag, index) => (
+          <Link className="ui label" key={index} to={`/tags/${kebabCase(tag)}`}>
+            {tag}
+          </Link>
+        ))}
+      </Label.Group>
+    </div>
+  );
+};
 
 NavigationBar.propTypes = {
   siteTitle: PropTypes.string.isRequired,
