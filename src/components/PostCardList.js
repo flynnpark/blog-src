@@ -5,18 +5,14 @@ import { Header, Divider, Icon, Item } from 'semantic-ui-react';
 import PostCard from './PostCard';
 
 const PostCardList = ({ listHeader, numOfPosts, posts, type }) => {
+  const subHeader = `A collection of ${numOfPosts} ${type && 'latest'} post${
+    numOfPosts === 1 ? '' : 's'
+  }`;
   return (
     <div>
       <Header as="h1">
         <Header.Content>{listHeader}</Header.Content>
-        {numOfPosts && (
-          <Header.Subheader>
-            A collection of {numOfPosts} {type && 'latest'} post{numOfPosts ===
-            1
-              ? ''
-              : 's'}
-          </Header.Subheader>
-        )}
+        {numOfPosts && <Header.Subheader>{subHeader}</Header.Subheader>}
       </Header>
       <Item.Group divided style={{ marginTop: '2.5em' }}>
         {posts

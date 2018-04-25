@@ -77,6 +77,7 @@ class Search extends Component {
         results={simpleResults}
         size="mini"
         value={value}
+        placeholder="Search..."
       />
     );
   }

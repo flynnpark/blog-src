@@ -4,6 +4,7 @@ import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
 import { Container, Grid } from 'semantic-ui-react';
 import globalConfig from '../../global-config';
+import Seo from '../components/Seo';
 import NavigationBar from '../components/NavigationBar';
 import ProfileCard from '../components/ProfileCard';
 import MiniTagsCard from '../components/MiniTagsCard';
@@ -21,6 +22,7 @@ const Layout = ({
   const { siteTitle } = globalConfig;
   return (
     <Container fluid>
+      <Seo />
       <NavigationBar
         siteTitle={siteTitle}
         postsInfo={posts}

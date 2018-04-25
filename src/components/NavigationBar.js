@@ -1,16 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Link from 'gatsby-link';
-import _ from 'lodash';
 import { Index } from 'elasticlunr';
-import { Menu, Container, Input, Header, Label } from 'semantic-ui-react';
+import { Menu, Container } from 'semantic-ui-react';
 import Search from './Search';
 import SearchItem from './SearchItem';
 
 const NavigationBar = props => {
   const { siteTitle, postsInfo, searchData } = props;
   return (
-    <Menu borderless fixed="top" inverted size="huge">
+    <Menu borderless fixed="top" size="huge">
       <Container>
         <Link className="header item" to="/">
           {siteTitle}
