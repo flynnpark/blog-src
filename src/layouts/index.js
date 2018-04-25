@@ -13,13 +13,14 @@ import 'semantic-ui-css/semantic.min.css';
 const Layout = ({
   children,
   data: {
+    siteSearchIndex,
     allMarkdownRemark: { tags },
   },
 }) => {
-  const { siteTitle, author, description, keywords } = globalConfig;
+  const { siteTitle } = globalConfig;
   return (
     <Container fluid>
-      <NavigationBar siteTitle={siteTitle} />
+      <NavigationBar siteTitle={siteTitle} searchData={siteSearchIndex} />
       <Container style={{ marginTop: '6em' }}>
         <Grid stackable columns="equal">
           <Grid.Column width={13}>{children()}</Grid.Column>
@@ -50,6 +51,9 @@ export default connect(mapStateToProps)(Layout);
 
 export const query = graphql`
   query LayoutQuery {
+    siteSearchIndex {
+      index
+    }
     allMarkdownRemark(limit: 20) {
       tags: group(field: frontmatter___tags) {
         tagName: fieldValue
