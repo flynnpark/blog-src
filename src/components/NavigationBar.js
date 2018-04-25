@@ -10,7 +10,7 @@ import SearchItem from './SearchItem';
 const NavigationBar = props => {
   const { siteTitle, postsInfo, searchData } = props;
   return (
-    <Menu borderless fixed="top" inverted size="huge">
+    <Menu borderless fixed="top" size="huge">
       <Container>
         <Link className="header item" to="/">
           {siteTitle}
