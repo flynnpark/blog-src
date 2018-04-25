@@ -15,7 +15,7 @@ const Layout = ({
   data: {
     siteSearchIndex,
     recentTags: { tags },
-    allPosts,
+    allPosts: { posts },
   },
 }) => {
   const { siteTitle } = globalConfig;
@@ -23,7 +23,7 @@ const Layout = ({
     <Container fluid>
       <NavigationBar
         siteTitle={siteTitle}
-        allPosts={allPosts}
+        postsInfo={posts}
         searchData={siteSearchIndex}
       />
       <Container style={{ marginTop: '6em' }}>
@@ -66,7 +66,7 @@ export const query = graphql`
       }
     }
     allPosts: allMarkdownRemark {
-      edges {
+      posts: edges {
         node {
           id
           fields {
