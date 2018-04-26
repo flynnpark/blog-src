@@ -34,6 +34,7 @@
     "redux-devtools-extension": "^2.13.2",
     "semantic-ui-css": "^2.3.1",
     "semantic-ui-react": "^0.79.1",
+    "typography-plugin-code": "^0.16.11",
     "typography-theme-github": "^0.15.10"
   },
   "devDependencies": {
