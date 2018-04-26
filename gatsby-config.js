@@ -10,7 +10,12 @@ module.exports = {
     'gatsby-plugin-react-helmet',
     'gatsby-transformer-remark',
     'gatsby-plugin-netlify-cms',
-    'gatsby-plugin-typography',
+    {
+      resolve: 'gatsby-plugin-typography',
+      options: {
+        pathToConfigModule: 'src/utils/typography.js',
+      },
+    },
     {
       resolve: 'gatsby-source-filesystem',
       options: {
