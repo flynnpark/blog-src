@@ -23,6 +23,7 @@
     "gatsby-plugin-netlify-cms": "^2.0.1",
     "gatsby-plugin-react-helmet": "^2.0.10",
     "gatsby-plugin-sitemap": "^1.2.22",
+    "gatsby-plugin-typography": "^1.7.18",
     "gatsby-source-filesystem": "^1.5.32",
     "gatsby-transformer-remark": "^1.7.40",
     "netlify-cms": "^1.6.0",

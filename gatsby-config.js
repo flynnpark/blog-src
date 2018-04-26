@@ -10,6 +10,7 @@ module.exports = {
     'gatsby-plugin-react-helmet',
     'gatsby-transformer-remark',
     'gatsby-plugin-netlify-cms',
+    'gatsby-plugin-typography',
     {
       resolve: 'gatsby-source-filesystem',
       options: {
