@@ -23,16 +23,21 @@
     "gatsby-plugin-netlify-cms": "^2.0.1",
     "gatsby-plugin-react-helmet": "^2.0.10",
     "gatsby-plugin-sitemap": "^1.2.22",
+    "gatsby-plugin-typography": "^1.7.18",
+    "gatsby-remark-prismjs": "^2.0.2",
     "gatsby-source-filesystem": "^1.5.32",
     "gatsby-transformer-remark": "^1.7.40",
     "netlify-cms": "^1.6.0",
+    "prismjs": "^1.14.0",
     "react-disqus-comments": "^1.2.0",
     "react-helmet": "^5.2.0",
     "react-redux": "^5.0.7",
     "redux": "^4.0.0",
     "redux-devtools-extension": "^2.13.2",
     "semantic-ui-css": "^2.3.1",
-    "semantic-ui-react": "^0.79.1"
+    "semantic-ui-react": "^0.79.1",
+    "typography-plugin-code": "^0.16.11",
+    "typography-theme-github": "^0.15.10"
   },
   "devDependencies": {
     "@andrew-codes/gatsby-plugin-elasticlunr-search": "^1.0.4",
