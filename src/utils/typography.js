@@ -7,6 +7,9 @@ githubTheme.overrideThemeStyles = ({ rhythm }, options) => ({
   html: {
     overflowY: false,
   },
+  img: {
+    marginBottom: '0',
+  },
 });
 
 const typography = new Typography(githubTheme);
