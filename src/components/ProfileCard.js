@@ -2,7 +2,7 @@ import React from 'react';
 import { Card, Image, Icon } from 'semantic-ui-react';
 
 import globalConfig from '../../global-config';
-import profileImage from './img/profile_image.png';
+import profileImage from '../images/profile_image.png';
 
 const ProfileCard = () => {
   const { nickname, realname, job, github } = globalConfig;
