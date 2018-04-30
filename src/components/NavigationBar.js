@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { actionCreators } from '../state/store';
 import Link from 'gatsby-link';
 import { Index } from 'elasticlunr';
 import { Menu, Container, Responsive, Button } from 'semantic-ui-react';
@@ -8,7 +10,13 @@ import SearchItem from './SearchItem';
 
 class NavigationBar extends Component {
   render() {
-    const { siteTitle, postsInfo, searchData } = this.props;
+    const {
+      siteTitle,
+      postsInfo,
+      searchData,
+      sidebarVisible,
+      toggleSidebar,
+    } = this.props;
     return (
       <div>
         <Menu borderless fixed="top" size="huge">
@@ -25,7 +33,7 @@ class NavigationBar extends Component {
                 <Search postsInfo={postsInfo} searchData={searchData} />
               </Responsive>
               <Responsive as={Menu.Item} maxWidth="767">
-                <Button basic icon="bars" />
+                <Button basic icon="bars" onClick={toggleSidebar} />
               </Responsive>
             </Menu.Menu>
           </Container>
@@ -39,4 +47,17 @@ NavigationBar.propTypes = {
   siteTitle: PropTypes.string.isRequired,
 };
 
-export default NavigationBar;
+const mapStateToProps = (state, ownProps) => {
+  const { sidebarVisible } = state;
+  return { sidebarVisible };
+};
+
+const mapDispatchToProps = (dispatch, ownProps) => {
+  return {
+    toggleSidebar: () => {
+      dispatch(actionCreators.setSidebarVisible(!ownProps.sidebarVisible));
+    },
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(NavigationBar);
