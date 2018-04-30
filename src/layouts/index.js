@@ -1,45 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Helmet from 'react-helmet';
-import { connect } from 'react-redux';
-import { Container, Grid } from 'semantic-ui-react';
-import globalConfig from '../../global-config';
-import Seo from '../components/Seo';
-import NavigationBar from '../components/NavigationBar';
-import ProfileCard from '../components/ProfileCard';
-import MiniTagsCard from '../components/MiniTagsCard';
-import Footer from '../components/Footer';
+import { Responsive } from 'semantic-ui-react';
+import DefaultLayout from '../components/DefaultLayout';
+import MobileLayout from '../components/MobileLayout';
 import 'semantic-ui-css/semantic.min.css';
 import 'prismjs/themes/prism-tomorrow.css';
 
-const Layout = ({
-  children,
-  data: {
-    siteSearchIndex,
-    recentTags: { tags },
-    allPosts: { posts },
-  },
-}) => {
-  const { siteTitle } = globalConfig;
+const Layout = ({ children, data }) => {
   return (
-    <Container fluid>
-      <Seo />
-      <NavigationBar
-        siteTitle={siteTitle}
-        postsInfo={posts}
-        searchData={siteSearchIndex}
-      />
-      <Container style={{ marginTop: '6em' }}>
-        <Grid stackable columns="equal">
-          <Grid.Column width={13}>{children()}</Grid.Column>
-          <Grid.Column width={3}>
-            <ProfileCard />
-            <MiniTagsCard tags={tags} />
-            <Footer />
-          </Grid.Column>
-        </Grid>
-      </Container>
-    </Container>
+    <div>
+      <Responsive {...Responsive.onlyMobile}>
+        <MobileLayout children={children} data={data} />
+      </Responsive>
+      <Responsive minWidth={Responsive.onlyTablet.minWidth}>
+        <DefaultLayout children={children} data={data} />
+      </Responsive>
+    </div>
   );
 };
 
@@ -48,14 +24,7 @@ Layout.propTypes = {
   children: PropTypes.func,
 };
 
-const mapStateToProps = (state, ownProps) => {
-  const { tagCardVisible } = state;
-  return {
-    tagCardVisible,
-  };
-};
-
-export default connect(mapStateToProps)(Layout);
+export default Layout;
 
 export const query = graphql`
   query LayoutQuery {
