@@ -24,7 +24,12 @@ class NavigationBar extends Component {
             <Link className="header item" to="/">
               {siteTitle}
             </Link>
-            <Responsive as={Menu.Item} minWidth="768">
+            <Responsive
+              as={Link}
+              className="item"
+              minWidth={Responsive.onlyTablet.minWidth}
+              to="/About/"
+            >
               About
             </Responsive>
 
