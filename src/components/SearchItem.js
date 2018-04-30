@@ -4,7 +4,6 @@ import Link from 'gatsby-link';
 import { Header, Label } from 'semantic-ui-react';
 
 const SearchItem = props => {
-  console.log(props);
   const {
     currentResult: { id, title },
     rawResults,

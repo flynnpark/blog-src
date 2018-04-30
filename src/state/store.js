@@ -3,22 +3,22 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 
 // Action Types
 
-const SET_TAG_CARD_VISIBLE = 'SET_TAG_CARD_VISIBLE';
+const SET_DROPDOWN_MENU = 'SET_DROPDOWN_MENU';
 
 // Action Creators
 
-function setTagCardVisible(visible) {
-  return { type: SET_TAG_CARD_VISIBLE, visible };
+function setDropdownVisible(visible) {
+  return { type: SET_DROPDOWN_MENU, visible };
 }
 
 // Reducer
 
 const reducer = (state, action) => {
   switch (action.type) {
-    case SET_TAG_CARD_VISIBLE:
+    case SET_DROPDOWN_MENU:
       return {
         ...state,
-        tagCardVisible: action.visible,
+        dropdownVisible: action.visible,
       };
     default:
       return state;
@@ -26,12 +26,11 @@ const reducer = (state, action) => {
 };
 
 const initialState = {
-  profileCardVisible: true,
-  tagCardVisible: true,
+  dropdownVisible: false,
 };
 
 const actionCreators = {
-  setTagCardVisible,
+  setDropdownVisible,
 };
 
 const createStore = () =>

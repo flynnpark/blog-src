@@ -1,61 +1,39 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
-import { Container, Grid } from 'semantic-ui-react';
-import globalConfig from '../../global-config';
-import Seo from '../components/Seo';
-import NavigationBar from '../components/NavigationBar';
-import ProfileCard from '../components/ProfileCard';
-import MiniTagsCard from '../components/MiniTagsCard';
-import Footer from '../components/Footer';
+import { actionCreators } from '../state/store';
+import DefaultLayout from '../components/DefaultLayout';
 import 'semantic-ui-css/semantic.min.css';
 import 'prismjs/themes/prism-tomorrow.css';
 
-const Layout = ({
-  children,
-  data: {
-    siteSearchIndex,
-    recentTags: { tags },
-    allPosts: { posts },
-  },
-}) => {
-  const { siteTitle } = globalConfig;
-  return (
-    <Container fluid>
-      <Seo />
-      <NavigationBar
-        siteTitle={siteTitle}
-        postsInfo={posts}
-        searchData={siteSearchIndex}
-      />
-      <Container style={{ marginTop: '6em' }}>
-        <Grid stackable columns="equal">
-          <Grid.Column width={13}>{children()}</Grid.Column>
-          <Grid.Column width={3}>
-            <ProfileCard />
-            <MiniTagsCard tags={tags} />
-            <Footer />
-          </Grid.Column>
-        </Grid>
-      </Container>
-    </Container>
-  );
-};
+class Layout extends Component {
+  render() {
+    const { children, data, sidebarVisible } = this.props;
+    return <DefaultLayout children={children} data={data} />;
+  }
 
-Layout.propTypes = {
-  data: PropTypes.object.isRequired,
-  children: PropTypes.func,
-};
+  closeSidebar = () => {
+    const { sidebarVisible, toggleSidebar } = this.props;
+    if (sidebarVisible) {
+      toggleSidebar(false);
+    }
+  };
+}
 
 const mapStateToProps = (state, ownProps) => {
-  const { tagCardVisible } = state;
+  const { sidebarVisible } = state;
+  return { sidebarVisible };
+};
+
+const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    tagCardVisible,
+    toggleSidebar: visible => {
+      dispatch(actionCreators.setSidebarVisible(visible));
+    },
   };
 };
 
-export default connect(mapStateToProps)(Layout);
+export default connect(mapStateToProps, mapDispatchToProps)(Layout);
 
 export const query = graphql`
   query LayoutQuery {

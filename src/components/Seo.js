@@ -18,7 +18,6 @@ const Seo = props => {
     : globalConfig.siteDescription;
   const image = postCover ? postCover : globalConfig.siteImage;
   const url = globalConfig.siteUrl + globalConfig.pathPrefix + postSlug;
-  console.log(title, description);
 
   return (
     <Helmet
@@ -30,6 +29,7 @@ const Seo = props => {
       {/* General tags */}
       <title>{title}</title>
       <meta name="description" content={description} />
+      <meta name="theme-color" content="#ffffff" />
       {/* OpenGraph tags */}
       <meta property="og:url" content={url} />
       <meta property="og:title" content={title} />
