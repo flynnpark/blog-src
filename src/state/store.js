@@ -3,22 +3,22 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 
 // Action Types
 
-const SET_SIDEBAR_VISIBLE = 'SET_SIDEBAR_VISIBLE';
+const SET_DROPDOWN_MENU = 'SET_DROPDOWN_MENU';
 
 // Action Creators
 
-function setSidebarVisible(visible) {
-  return { type: SET_SIDEBAR_VISIBLE, visible };
+function setDropdownVisible(visible) {
+  return { type: SET_DROPDOWN_MENU, visible };
 }
 
 // Reducer
 
 const reducer = (state, action) => {
   switch (action.type) {
-    case SET_SIDEBAR_VISIBLE:
+    case SET_DROPDOWN_MENU:
       return {
         ...state,
-        sidebarVisible: action.visible,
+        dropdownVisible: action.visible,
       };
     default:
       return state;
@@ -26,11 +26,11 @@ const reducer = (state, action) => {
 };
 
 const initialState = {
-  sidebarVisible: false,
+  dropdownVisible: false,
 };
 
 const actionCreators = {
-  setSidebarVisible,
+  setDropdownVisible,
 };
 
 const createStore = () =>

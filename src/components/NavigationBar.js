@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { actionCreators } from '../state/store';
 import Link from 'gatsby-link';
 import { Index } from 'elasticlunr';
-import { Menu, Container, Responsive, Button } from 'semantic-ui-react';
+import { Menu, Container, Responsive, Dropdown } from 'semantic-ui-react';
 import Search from './Search';
 import SearchItem from './SearchItem';
 
@@ -14,8 +14,8 @@ class NavigationBar extends Component {
       siteTitle,
       postsInfo,
       searchData,
-      sidebarVisible,
-      toggleSidebar,
+      dropdownVisible,
+      toggleDropdownVisible,
     } = this.props;
     return (
       <div>
@@ -29,11 +29,28 @@ class NavigationBar extends Component {
             </Responsive>
 
             <Menu.Menu position="right">
-              <Responsive as={Menu.Item} minWidth="768">
+              <Responsive
+                as={Menu.Item}
+                minWidth={Responsive.onlyTablet.minWidth}
+              >
                 <Search postsInfo={postsInfo} searchData={searchData} />
               </Responsive>
-              <Responsive as={Menu.Item} maxWidth="767">
-                <Button basic icon="bars" onClick={this.openSidebar} />
+              <Responsive as={Menu.Item} {...Responsive.onlyMobile}>
+                <Dropdown
+                  basic
+                  icon="bars"
+                  open={dropdownVisible}
+                  onClick={this.openDropdown}
+                  onBlur={this.closeDropdown}
+                >
+                  <Dropdown.Menu>
+                    <Search postsInfo={postsInfo} searchData={searchData} />
+                    <Dropdown.Divider />
+                    <Dropdown.Header content="Other menus" />
+                    <Dropdown.Divider />
+                    <Dropdown.Item>About</Dropdown.Item>
+                  </Dropdown.Menu>
+                </Dropdown>
               </Responsive>
             </Menu.Menu>
           </Container>
@@ -42,10 +59,17 @@ class NavigationBar extends Component {
     );
   }
 
-  openSidebar = () => {
-    const { sidebarVisible, toggleSidebar } = this.props;
-    if (!sidebarVisible) {
-      toggleSidebar(true);
+  openDropdown = () => {
+    const { dropdownVisible, toggleDropdownVisible } = this.props;
+    if (!dropdownVisible) {
+      toggleDropdownVisible(true);
+    }
+  };
+
+  closeDropdown = () => {
+    const { dropdownVisible, toggleDropdownVisible } = this.props;
+    if (dropdownVisible) {
+      toggleDropdownVisible(false);
     }
   };
 }
@@ -55,14 +79,14 @@ NavigationBar.propTypes = {
 };
 
 const mapStateToProps = (state, ownProps) => {
-  const { sidebarVisible } = state;
-  return { sidebarVisible };
+  const { dropdownVisible } = state;
+  return { dropdownVisible };
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    toggleSidebar: visible => {
-      dispatch(actionCreators.setSidebarVisible(visible));
+    toggleDropdownVisible: visible => {
+      dispatch(actionCreators.setDropdownVisible(visible));
     },
   };
 };
