@@ -2,7 +2,8 @@ backend:
   name: github
   repo: wphestiraid/blog-posts
 
-media_folder: contents/media
+media_folder: contents/images
+public_folder: /images
 
 collections:
   - name: post
