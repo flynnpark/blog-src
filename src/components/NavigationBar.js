@@ -1,30 +1,39 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Link from 'gatsby-link';
 import { Index } from 'elasticlunr';
-import { Menu, Container } from 'semantic-ui-react';
+import { Menu, Container, Responsive, Button } from 'semantic-ui-react';
 import Search from './Search';
 import SearchItem from './SearchItem';
 
-const NavigationBar = props => {
-  const { siteTitle, postsInfo, searchData } = props;
-  return (
-    <Menu borderless fixed="top" size="huge">
-      <Container>
-        <Link className="header item" to="/">
-          {siteTitle}
-        </Link>
-        <Menu.Item as="a">About</Menu.Item>
+class NavigationBar extends Component {
+  render() {
+    const { siteTitle, postsInfo, searchData } = this.props;
+    return (
+      <div>
+        <Menu borderless fixed="top" size="huge">
+          <Container>
+            <Link className="header item" to="/">
+              {siteTitle}
+            </Link>
+            <Responsive as={Menu.Item} minWidth="768">
+              About
+            </Responsive>
 
-        <Menu.Menu position="right">
-          <Menu.Item>
-            <Search postsInfo={postsInfo} searchData={searchData} />
-          </Menu.Item>
-        </Menu.Menu>
-      </Container>
-    </Menu>
-  );
-};
+            <Menu.Menu position="right">
+              <Responsive as={Menu.Item} minWidth="768">
+                <Search postsInfo={postsInfo} searchData={searchData} />
+              </Responsive>
+              <Responsive as={Menu.Item} maxWidth="767">
+                <Button basic icon="bars" />
+              </Responsive>
+            </Menu.Menu>
+          </Container>
+        </Menu>
+      </div>
+    );
+  }
+}
 
 NavigationBar.propTypes = {
   siteTitle: PropTypes.string.isRequired,
