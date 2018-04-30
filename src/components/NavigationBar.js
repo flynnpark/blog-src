@@ -33,7 +33,7 @@ class NavigationBar extends Component {
                 <Search postsInfo={postsInfo} searchData={searchData} />
               </Responsive>
               <Responsive as={Menu.Item} maxWidth="767">
-                <Button basic icon="bars" onClick={toggleSidebar} />
+                <Button basic icon="bars" onClick={this.openSidebar} />
               </Responsive>
             </Menu.Menu>
           </Container>
@@ -41,6 +41,13 @@ class NavigationBar extends Component {
       </div>
     );
   }
+
+  openSidebar = () => {
+    const { sidebarVisible, toggleSidebar } = this.props;
+    if (!sidebarVisible) {
+      toggleSidebar(true);
+    }
+  };
 }
 
 NavigationBar.propTypes = {
@@ -54,8 +61,8 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    toggleSidebar: () => {
-      dispatch(actionCreators.setSidebarVisible(!ownProps.sidebarVisible));
+    toggleSidebar: visible => {
+      dispatch(actionCreators.setSidebarVisible(visible));
     },
   };
 };

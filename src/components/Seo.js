@@ -18,7 +18,6 @@ const Seo = props => {
     : globalConfig.siteDescription;
   const image = postCover ? postCover : globalConfig.siteImage;
   const url = globalConfig.siteUrl + globalConfig.pathPrefix + postSlug;
-  console.log(title, description);
 
   return (
     <Helmet
