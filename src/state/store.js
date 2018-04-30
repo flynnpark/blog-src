@@ -3,22 +3,22 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 
 // Action Types
 
-const SET_TAG_CARD_VISIBLE = 'SET_TAG_CARD_VISIBLE';
+const SET_SIDEBAR_VISIBLE = 'SET_SIDEBAR_VISIBLE';
 
 // Action Creators
 
-function setTagCardVisible(visible) {
-  return { type: SET_TAG_CARD_VISIBLE, visible };
+function setSidebarVisible(visible) {
+  return { type: SET_SIDEBAR_VISIBLE, visible };
 }
 
 // Reducer
 
 const reducer = (state, action) => {
   switch (action.type) {
-    case SET_TAG_CARD_VISIBLE:
+    case SET_SIDEBAR_VISIBLE:
       return {
         ...state,
-        tagCardVisible: action.visible,
+        sidebarVisible: action.visible,
       };
     default:
       return state;
@@ -26,12 +26,11 @@ const reducer = (state, action) => {
 };
 
 const initialState = {
-  profileCardVisible: true,
-  tagCardVisible: true,
+  sidebarVisible: false,
 };
 
 const actionCreators = {
-  setTagCardVisible,
+  setSidebarVisible,
 };
 
 const createStore = () =>
