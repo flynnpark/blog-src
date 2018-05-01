@@ -1,7 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Link, { navigateTo } from 'gatsby-link';
-import { Header, Divider, Icon, Item, Pagination } from 'semantic-ui-react';
+import {
+  Container,
+  Header,
+  Divider,
+  Icon,
+  Item,
+  Pagination,
+} from 'semantic-ui-react';
 import PostCard from './PostCard';
 
 const PostCardList = ({ listHeader, numOfPosts, posts, type, pageInfo }) => {
@@ -19,26 +26,28 @@ const PostCardList = ({ listHeader, numOfPosts, posts, type, pageInfo }) => {
           .filter(edge => !!edge.node.frontmatter.date)
           .map((post, index) => <PostCard key={index} post={post.node} />)}
       </Item.Group>
-      <Pagination
-        defaultActivePage={pageInfo.index}
-        ellipsisItem={{
-          content: <Icon name="ellipsis horizontal" />,
-          icon: true,
-        }}
-        firstItem={{ content: <Icon name="angle double left" />, icon: true }}
-        lastItem={{ content: <Icon name="angle double right" />, icon: true }}
-        prevItem={{ content: <Icon name="angle left" />, icon: true }}
-        nextItem={{ content: <Icon name="angle right" />, icon: true }}
-        totalPages={pageInfo.pageCount}
-        onPageChange={(e, { activePage }) => {
-          const prefix = '/' + pageInfo.pathPrefix;
-          if (activePage === 1) {
-            navigateTo(prefix);
-          } else {
-            navigateTo(prefix + '/' + activePage);
-          }
-        }}
-      />
+      <Container fluid textAlign="center">
+        <Pagination
+          defaultActivePage={pageInfo.index}
+          ellipsisItem={{
+            content: <Icon name="ellipsis horizontal" />,
+            icon: true,
+          }}
+          firstItem={{ content: <Icon name="angle double left" />, icon: true }}
+          lastItem={{ content: <Icon name="angle double right" />, icon: true }}
+          prevItem={{ content: <Icon name="angle left" />, icon: true }}
+          nextItem={{ content: <Icon name="angle right" />, icon: true }}
+          totalPages={pageInfo.pageCount}
+          onPageChange={(e, { activePage }) => {
+            const prefix = '/' + pageInfo.pathPrefix;
+            if (activePage === 1) {
+              navigateTo(prefix);
+            } else {
+              navigateTo(prefix + '/' + activePage);
+            }
+          }}
+        />
+      </Container>
     </div>
   );
 };
