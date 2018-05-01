@@ -8,6 +8,7 @@
 const path = require('path');
 const _ = require('lodash');
 const { createFilePath } = require('gatsby-source-filesystem');
+const createPaginatedPages = require('gatsby-paginate');
 
 exports.onCreateNode = ({ node, getNode, boundActionCreators }) => {
   const { createNodeField } = boundActionCreators;
@@ -28,18 +29,23 @@ exports.onCreateNode = ({ node, getNode, boundActionCreators }) => {
 
 exports.createPages = ({ graphql, boundActionCreators }) => {
   const { createPage } = boundActionCreators;
+  const postListTemplate = path.resolve('./src/templates/PostList.js');
   const blogPostTemplate = path.resolve('./src/templates/post.js');
   const tagTemplate = path.resolve('./src/templates/tag.js');
 
   return graphql(`
     {
       allMarkdownRemark(sort: { order: DESC, fields: [frontmatter___date] }) {
+        totalCount
         edges {
           node {
             fields {
               slug
             }
+            excerpt(pruneLength: 200)
             frontmatter {
+              date(formatString: "MMMM DD, YYYY")
+              title
               tags
             }
           }
@@ -52,6 +58,18 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
     }
 
     const posts = result.data.allMarkdownRemark.edges;
+    const numOfPosts = result.data.allMarkdownRemark.totalCount;
+
+    createPaginatedPages({
+      edges: posts,
+      createPage: createPage,
+      pageTemplate: './src/templates/PostList.js',
+      pageLength: 2,
+      pathPrefix: 'posts/pages',
+      context: {
+        numOfPosts,
+      },
+    });
 
     posts.forEach(({ node }) => {
       createPage({
