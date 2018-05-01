@@ -22,6 +22,7 @@ const IndexPage = ({ pathContext }) => {
     pathPrefix,
     additionalContext,
   } = pathContext;
+  const pageInfo = { index, first, last, pageCount, pathPrefix };
   return (
     <div>
       <Seo />
@@ -33,10 +34,10 @@ const IndexPage = ({ pathContext }) => {
         <Breadcrumb.Section active>Posts</Breadcrumb.Section>
       </Breadcrumb>
       <PostCardList
-        listHeader="Posts"
+        listHeader={additionalContext.listHeader}
         numOfPosts={additionalContext.numOfPosts}
         posts={group}
-        pathContext={pathContext}
+        pageInfo={pageInfo}
       />
     </div>
   );

@@ -63,10 +63,11 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
     createPaginatedPages({
       edges: posts,
       createPage: createPage,
-      pageTemplate: './src/templates/PostList.js',
+      pageTemplate: './src/templates/posts.js',
       pageLength: 2,
       pathPrefix: 'posts/pages',
       context: {
+        listHeader: 'Posts',
         numOfPosts,
       },
     });

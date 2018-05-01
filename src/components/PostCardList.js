@@ -1,20 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Link from 'gatsby-link';
+import Link, { navigateTo } from 'gatsby-link';
 import { Header, Divider, Icon, Item, Pagination } from 'semantic-ui-react';
 import PostCard from './PostCard';
 
-const PostCardList = ({ listHeader, numOfPosts, posts, type, pathContext }) => {
-  console.log(pathContext);
-  const {
-    group,
-    index,
-    first,
-    last,
-    pageCount,
-    pathPrefix,
-    additionalContext,
-  } = pathContext;
+const PostCardList = ({ listHeader, numOfPosts, posts, type, pageInfo }) => {
   const subHeader = `A collection of ${numOfPosts} ${type && 'latest'} post${
     numOfPosts === 1 ? '' : 's'
   }`;
@@ -30,7 +20,7 @@ const PostCardList = ({ listHeader, numOfPosts, posts, type, pathContext }) => {
           .map((post, index) => <PostCard key={index} post={post.node} />)}
       </Item.Group>
       <Pagination
-        defaultActivePage={1}
+        defaultActivePage={pageInfo.index}
         ellipsisItem={{
           content: <Icon name="ellipsis horizontal" />,
           icon: true,
@@ -39,7 +29,15 @@ const PostCardList = ({ listHeader, numOfPosts, posts, type, pathContext }) => {
         lastItem={{ content: <Icon name="angle double right" />, icon: true }}
         prevItem={{ content: <Icon name="angle left" />, icon: true }}
         nextItem={{ content: <Icon name="angle right" />, icon: true }}
-        totalPages={3}
+        totalPages={pageInfo.pageCount}
+        onPageChange={(e, { activePage }) => {
+          const prefix = '/' + pageInfo.pathPrefix;
+          if (activePage === 1) {
+            navigateTo(prefix);
+          } else {
+            navigateTo(prefix + '/' + activePage);
+          }
+        }}
       />
     </div>
   );
