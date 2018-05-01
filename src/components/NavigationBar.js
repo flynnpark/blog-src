@@ -53,7 +53,9 @@ class NavigationBar extends Component {
                     <Dropdown.Divider />
                     <Dropdown.Header content="Other menus" />
                     <Dropdown.Divider />
-                    <Dropdown.Item>About</Dropdown.Item>
+                    <Dropdown.Item as={Link} to="/About/">
+                      About
+                    </Dropdown.Item>
                   </Dropdown.Menu>
                 </Dropdown>
               </Responsive>
