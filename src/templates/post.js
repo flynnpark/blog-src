@@ -16,7 +16,7 @@ const PostDetail = ({ data }) => {
           Home
         </Link>
         <Breadcrumb.Divider icon="right angle" />
-        <Link className="section" to="/posts">
+        <Link className="section" to="/posts/pages">
           Posts
         </Link>
         <Breadcrumb.Divider icon="right angle" />
