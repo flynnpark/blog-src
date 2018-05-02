@@ -2,17 +2,18 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Link from 'gatsby-link';
 import kebabCase from 'lodash/kebabCase';
-import { Item, Label } from 'semantic-ui-react';
+import { Item, Label, Header } from 'semantic-ui-react';
 
 const PostCard = ({ post }) => {
   const { tags } = post.frontmatter;
   return (
-    <Item>
+    <Item style={{ paddingTop: '1.2em', paddingBottom: '1.2em' }}>
       <Item.Content>
         <Item.Header>
-          <Link to={post.fields.slug}>
-            {post.frontmatter.title} ({post.frontmatter.date})
-          </Link>
+          <Header as={Link} size="medium" to={post.fields.slug}>
+            {post.frontmatter.title}
+            <Header.Subheader>{post.frontmatter.date}</Header.Subheader>
+          </Header>
         </Item.Header>
         <Item.Meta>
           <Label.Group>
@@ -21,6 +22,7 @@ const PostCard = ({ post }) => {
                 className="ui label"
                 key={index}
                 to={`/tags/${kebabCase(tag)}`}
+                style={{ marginTop: '0.3em', marginBottom: '0.3em' }}
               >
                 {tag}
               </Link>
