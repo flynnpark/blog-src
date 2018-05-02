@@ -12,9 +12,9 @@ import {
 import PostCard from './PostCard';
 
 const PostCardList = ({ listHeader, numOfPosts, posts, type, pageInfo }) => {
-  const subHeader = `A collection of ${numOfPosts} ${type && 'latest'} post${
-    numOfPosts === 1 ? '' : 's'
-  }`;
+  const subHeader = `A collection of ${numOfPosts} ${
+    type !== undefined ? type : ''
+  } post${numOfPosts === 1 ? '' : 's'}`;
   return (
     <div>
       <Header as="h1">
@@ -26,28 +26,36 @@ const PostCardList = ({ listHeader, numOfPosts, posts, type, pageInfo }) => {
           .filter(edge => !!edge.node.frontmatter.date)
           .map((post, index) => <PostCard key={index} post={post.node} />)}
       </Item.Group>
-      <Container fluid textAlign="center">
-        <Pagination
-          defaultActivePage={pageInfo.index}
-          ellipsisItem={{
-            content: <Icon name="ellipsis horizontal" />,
-            icon: true,
-          }}
-          firstItem={{ content: <Icon name="angle double left" />, icon: true }}
-          lastItem={{ content: <Icon name="angle double right" />, icon: true }}
-          prevItem={{ content: <Icon name="angle left" />, icon: true }}
-          nextItem={{ content: <Icon name="angle right" />, icon: true }}
-          totalPages={pageInfo.pageCount}
-          onPageChange={(e, { activePage }) => {
-            const prefix = '/' + pageInfo.pathPrefix;
-            if (activePage === 1) {
-              navigateTo(prefix);
-            } else {
-              navigateTo(prefix + '/' + activePage);
-            }
-          }}
-        />
-      </Container>
+      {type !== 'recents' && (
+        <Container fluid textAlign="center">
+          <Pagination
+            defaultActivePage={pageInfo.index}
+            ellipsisItem={{
+              content: <Icon name="ellipsis horizontal" />,
+              icon: true,
+            }}
+            firstItem={{
+              content: <Icon name="angle double left" />,
+              icon: true,
+            }}
+            lastItem={{
+              content: <Icon name="angle double right" />,
+              icon: true,
+            }}
+            prevItem={{ content: <Icon name="angle left" />, icon: true }}
+            nextItem={{ content: <Icon name="angle right" />, icon: true }}
+            totalPages={pageInfo.pageCount}
+            onPageChange={(e, { activePage }) => {
+              const prefix = '/' + pageInfo.pathPrefix;
+              if (activePage === 1) {
+                navigateTo(prefix);
+              } else {
+                navigateTo(prefix + '/' + activePage);
+              }
+            }}
+          />
+        </Container>
+      )}
     </div>
   );
 };
@@ -70,6 +78,14 @@ PostCardList.propTypes = {
       }).isRequired,
     })
   ),
+  type: PropTypes.string,
+  pageInfo: PropTypes.shape({
+    index: PropTypes.number.isRequired,
+    first: PropTypes.bool.isRequired,
+    last: PropTypes.bool.isRequired,
+    pageCount: PropTypes.number.isRequired,
+    pathPrefix: PropTypes.string,
+  }),
 };
 
 export default PostCardList;

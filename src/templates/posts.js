@@ -1,16 +1,9 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Link from 'gatsby-link';
 import { Breadcrumb, Header, Icon, Item } from 'semantic-ui-react';
 import Seo from '../components/Seo';
 import PostCardList from '../components/PostCardList';
-
-const NavLink = props => {
-  if (!props.test) {
-    return <Link to={props.url}>{props.text}</Link>;
-  } else {
-    return <span>{props.text}</span>;
-  }
-};
 
 const IndexPage = ({ pathContext }) => {
   const {
@@ -31,7 +24,9 @@ const IndexPage = ({ pathContext }) => {
           Home
         </Link>
         <Breadcrumb.Divider icon="right angle" />
-        <Breadcrumb.Section active>Posts</Breadcrumb.Section>
+        <Breadcrumb.Section active>
+          {additionalContext.listHeader}
+        </Breadcrumb.Section>
       </Breadcrumb>
       <PostCardList
         listHeader={additionalContext.listHeader}
@@ -41,6 +36,21 @@ const IndexPage = ({ pathContext }) => {
       />
     </div>
   );
+};
+
+IndexPage.propTypes = {
+  pathContext: PropTypes.shape({
+    group: PropTypes.array,
+    index: PropTypes.number.isRequired,
+    first: PropTypes.bool.isRequired,
+    last: PropTypes.bool.isRequired,
+    pageCount: PropTypes.number.isRequired,
+    pathPrefix: PropTypes.string,
+    additionalContext: PropTypes.shape({
+      listHeader: PropTypes.string,
+      numOfPosts: PropTypes.number,
+    }),
+  }).isRequired,
 };
 
 export default IndexPage;

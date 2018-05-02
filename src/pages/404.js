@@ -14,11 +14,11 @@ const NotFoundPage = () => (
     <Header as="h1">
       404 Not Found
       <Header.Subheader>
-        You just hit a route that doesn&#39;t exist... the sadness.
+        You just hit a route that doesn&#39;t exist...
       </Header.Subheader>
     </Header>
     <Divider />
-    <Button icon labelPosition="left" color="blue">
+    <Button as={Link} icon labelPosition="left" color="blue" to="/">
       <Icon name="home" />
       Return to Home
     </Button>
