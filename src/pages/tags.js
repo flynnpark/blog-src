@@ -25,7 +25,6 @@ const Tags = props => {
 };
 
 Tags.propTypes = {
-  setTagCardVisible: PropTypes.func.isRequired,
   data: PropTypes.shape({
     allMarkdownRemark: PropTypes.shape({
       numOfTags: PropTypes.number.isRequired,

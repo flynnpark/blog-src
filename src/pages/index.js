@@ -14,7 +14,7 @@ const IndexPage = ({ data }) => {
         type={'recents'}
       />
       <div style={{ marginTop: '2em' }}>
-        <Link to="/posts">
+        <Link to="/posts/pages">
           <Icon name="arrow right" />View more posts
         </Link>
       </div>
