@@ -8,11 +8,9 @@ const MiniTagsCard = ({ tags }) => {
   return (
     <Card fluid>
       <Card.Content>
-        <Card.Header>
-          <Link to="/tags">
-            <Icon name="tags" size="small" />
-            Tags
-          </Link>
+        <Card.Header as={Link} to="/tags">
+          <Icon name="tags" size="small" />
+          Tags
         </Card.Header>
       </Card.Content>
       <Card.Content>
