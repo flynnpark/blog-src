@@ -10,7 +10,7 @@ const PostCard = ({ post }) => {
     <Item style={{ paddingTop: '1.2em', paddingBottom: '1.2em' }}>
       <Item.Content>
         <Item.Header>
-          <Header as={Link} size="medium" to={post.fields.slug}>
+          <Header as={Link} size="small" to={post.fields.slug}>
             {post.frontmatter.title}
             <Header.Subheader>{post.frontmatter.date}</Header.Subheader>
           </Header>
