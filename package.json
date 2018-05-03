@@ -10,8 +10,9 @@
   "license": "MIT",
   "scripts": {
     "update-contents": "git submodule update --init --remote",
-    "build": "yarn update-contents && gatsby build",
-    "develop": "gatsby develop",
+    "css-build": "gulp --cwd ./src/semantic build",
+    "build": "npm run css-build && npm run update-contents && gatsby build",
+    "develop": "npm run css-build && gatsby develop",
     "format": "prettier --write 'src/**/*.js'",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -40,13 +41,13 @@
     "react-redux": "^5.0.7",
     "redux": "^4.0.0",
     "redux-devtools-extension": "^2.13.2",
-    "semantic-ui-css": "^2.3.1",
     "semantic-ui-react": "^0.79.1",
     "typography-plugin-code": "^0.16.11",
     "typography-theme-github": "^0.15.10"
   },
   "devDependencies": {
     "@andrew-codes/gatsby-plugin-elasticlunr-search": "^1.0.4",
-    "prettier": "^1.12.0"
+    "prettier": "^1.12.0",
+    "semantic-ui": "^2.3.1"
   }
 }

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { actionCreators } from '../state/store';
 import DefaultLayout from '../components/DefaultLayout';
-import 'semantic-ui-css/semantic.min.css';
+import '../semantic/dist/semantic.min.css';
 import 'prismjs/themes/prism-tomorrow.css';
 
 class Layout extends Component {
