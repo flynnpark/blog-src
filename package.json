@@ -3,15 +3,13 @@
   "description": "Gatsby default starter",
   "version": "1.0.0",
   "author": "Kyle Mathews <mathews.kyle@gmail.com>",
-  "keywords": [
-    "gatsby",
-    "blog"
-  ],
+  "keywords": ["gatsby", "blog"],
   "license": "MIT",
   "scripts": {
     "update-contents": "git submodule update --init --remote",
-    "build": "yarn update-contents && gatsby build",
-    "develop": "gatsby develop",
+    "css-build": "gulp --cwd ./src/semantic build",
+    "build": "npm run css-build && npm run update-contents && gatsby build",
+    "develop": "npm run css-build && gatsby develop",
     "format": "prettier --write 'src/**/*.js'",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -47,6 +45,7 @@
   },
   "devDependencies": {
     "@andrew-codes/gatsby-plugin-elasticlunr-search": "^1.0.4",
-    "prettier": "^1.12.0"
+    "prettier": "^1.12.0",
+    "semantic-ui": "^2.3.1"
   }
 }
