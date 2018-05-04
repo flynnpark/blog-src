@@ -29,10 +29,10 @@
 --------------------*/
 
 /* This is the single variable that controls them all */
-@emSize   : 16px;
+@emSize   : 15px;
 
 /* The size of page text  */
-@fontSize : 16px;
+@fontSize : 15px;
 
 
 /*-------------------
