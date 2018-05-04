@@ -29,7 +29,7 @@ const Seo = props => {
       {/* General tags */}
       <title>{title}</title>
       <meta name="description" content={description} />
-      <meta name="theme-color" content="#000000" />
+      <meta name="theme-color" content="#95a5a6" />
       {/* OpenGraph tags */}
       <meta property="og:url" content={url} />
       <meta property="og:title" content={title} />
