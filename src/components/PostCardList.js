@@ -50,7 +50,7 @@ const PostCardList = ({ listHeader, numOfPosts, posts, type, pageInfo }) => {
               if (activePage === 1) {
                 navigateTo(prefix);
               } else {
-                navigateTo(prefix + '/' + activePage);
+                navigateTo(`${prefix}/${activePage}`);
               }
             }}
           />

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { actionCreators } from '../state/store';
-import Link from 'gatsby-link';
+import { navigateTo } from 'gatsby-link';
 import { Index } from 'elasticlunr';
 import { Menu, Container, Responsive, Dropdown } from 'semantic-ui-react';
 import Search from './Search';
@@ -21,16 +21,13 @@ class NavigationBar extends Component {
       <div>
         <Menu borderless fixed="top" size="huge" inverted>
           <Container>
-            <Link className="header item" to="/">
+            <Menu.Item as="a" header onClick={() => navigateTo('/')}>
               {siteTitle}
-            </Link>
-            <Responsive
-              as={Link}
-              className="item"
-              minWidth={Responsive.onlyTablet.minWidth}
-              to="/about/"
-            >
-              About
+            </Menu.Item>
+            <Responsive minWidth={Responsive.onlyTablet.minWidth}>
+              <Menu.Item as="a" onClick={() => navigateTo('/about/')}>
+                About
+              </Menu.Item>
             </Responsive>
 
             <Menu.Menu position="right">
@@ -53,7 +50,7 @@ class NavigationBar extends Component {
                     <Dropdown.Divider />
                     <Dropdown.Header content="Other menus" />
                     <Dropdown.Divider />
-                    <Dropdown.Item as={Link} to="/about/">
+                    <Dropdown.Item as="a" onClick={() => navigateTo('/about/')}>
                       About
                     </Dropdown.Item>
                   </Dropdown.Menu>
