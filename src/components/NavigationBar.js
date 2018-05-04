@@ -19,7 +19,7 @@ class NavigationBar extends Component {
     } = this.props;
     return (
       <div>
-        <Menu borderless fixed="top" size="huge">
+        <Menu borderless fixed="top" size="huge" inverted>
           <Container>
             <Link className="header item" to="/">
               {siteTitle}
@@ -28,7 +28,7 @@ class NavigationBar extends Component {
               as={Link}
               className="item"
               minWidth={Responsive.onlyTablet.minWidth}
-              to="/About/"
+              to="/about/"
             >
               About
             </Responsive>
@@ -53,7 +53,7 @@ class NavigationBar extends Component {
                     <Dropdown.Divider />
                     <Dropdown.Header content="Other menus" />
                     <Dropdown.Divider />
-                    <Dropdown.Item as={Link} to="/About/">
+                    <Dropdown.Item as={Link} to="/about/">
                       About
                     </Dropdown.Item>
                   </Dropdown.Menu>
