@@ -5,9 +5,17 @@ import kebabCase from 'lodash/kebabCase';
 import { Item, Label, Header } from 'semantic-ui-react';
 
 const PostCard = ({ post }) => {
-  const { tags } = post.frontmatter;
+  const {
+    cover: {
+      childImageSharp: {
+        resize: { coverImage },
+      },
+    },
+    tags,
+  } = post.frontmatter;
   return (
     <Item style={{ paddingTop: '1.2em', paddingBottom: '1.2em' }}>
+      <Item.Image src={coverImage} />
       <Item.Content>
         <Item.Header>
           <Header as={Link} size="small" to={post.fields.slug}>

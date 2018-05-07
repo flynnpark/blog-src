@@ -46,6 +46,13 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
             frontmatter {
               date(formatString: "YYYY. MM. DD. HH:mm")
               title
+              cover {
+                childImageSharp {
+                  resize(width: 300) {
+                    coverImage: src
+                  }
+                }
+              }
               tags
             }
           }
