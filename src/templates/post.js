@@ -40,7 +40,8 @@ const PostDetail = ({ data }) => {
           ))}
         </Label.Group>
         <Divider style={{ marginTop: '2em', marginBottom: '2em' }} />
-        <div
+        <article
+          className="markdown-body"
           dangerouslySetInnerHTML={{ __html: post.html }}
           style={{ marginBottom: '2em' }}
         />
