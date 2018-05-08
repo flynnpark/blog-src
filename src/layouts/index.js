@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { actionCreators } from '../state/store';
 import DefaultLayout from '../components/DefaultLayout';
 import '../semantic/dist/semantic.min.css';
+import 'github-markdown-css/github-markdown.css';
 import 'prismjs/themes/prism-tomorrow.css';
 
 class Layout extends Component {
