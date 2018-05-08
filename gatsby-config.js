@@ -16,6 +16,7 @@ module.exports = {
       resolve: 'gatsby-transformer-remark',
       options: {
         plugins: [
+          'gatsby-remark-emoji',
           'gatsby-remark-prismjs',
           'gatsby-remark-external-links',
           'gatsby-remark-copy-linked-files',
@@ -26,12 +27,6 @@ module.exports = {
             },
           },
         ],
-      },
-    },
-    {
-      resolve: 'gatsby-plugin-typography',
-      options: {
-        pathToConfigModule: 'src/utils/typography.js',
       },
     },
     {
