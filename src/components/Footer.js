@@ -1,11 +1,11 @@
 import React from 'react';
-import { Container, Header } from 'semantic-ui-react';
+import { Container, Segment } from 'semantic-ui-react';
 
 const Footer = () => {
   return (
-    <Container textAlign="center">
-      <Header subheader="© 2018 Flynn (Inho Park)" color="grey" />
-    </Container>
+    <Segment vertical style={{ marginTop: '1.5em' }}>
+      <Container textAlign="center">© 2018 Flynn (Inho Park)</Container>
+    </Segment>
   );
 };
 
