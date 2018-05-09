@@ -73,9 +73,17 @@ export const query = graphql`
         slug
       }
       html
+      excerpt(pruneLength: 300)
       frontmatter {
         date(formatString: "YYYY. MM. DD. HH:mm")
         title
+        cover {
+          childImageSharp {
+            resize(width: 500) {
+              coverImage: src
+            }
+          }
+        }
         tags
       }
     }

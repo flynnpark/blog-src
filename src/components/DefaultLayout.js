@@ -17,23 +17,34 @@ const DefaultLayout = ({
 }) => {
   const { siteTitle } = globalConfig;
   return (
-    <div>
+    <div
+      style={{
+        display: 'flex',
+        minHeight: '100vh',
+        flexDirection: 'column',
+      }}
+    >
       <Seo />
       <NavigationBar
         siteTitle={siteTitle}
         postsInfo={posts}
         searchData={siteSearchIndex}
       />
-      <Container style={{ marginTop: '6em' }}>
+      <Container
+        style={{
+          flex: 1,
+          paddingTop: '6em',
+        }}
+      >
         <Grid stackable columns="equal">
           <Grid.Column width={13}>{children()}</Grid.Column>
           <Grid.Column width={3}>
             <ProfileCard />
             <MiniTagsCard tags={tags} />
-            <Footer />
           </Grid.Column>
         </Grid>
       </Container>
+      <Footer />
     </div>
   );
 };

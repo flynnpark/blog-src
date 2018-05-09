@@ -6,7 +6,7 @@ import globalConfig from '../../global-config';
 const Seo = props => {
   const { data } = props;
   const postTitle = ((data || {}).frontmatter || {}).title;
-  const postDescription = ((data || {}).frontmatter || {}).description;
+  const postDescription = (data || {}).excerpt;
   const postCover = ((data || {}).frontmatter || {}).cover;
   const postSlug = ((data || {}).fields || {}).slug;
 
@@ -15,9 +15,11 @@ const Seo = props => {
     : globalConfig.siteTitle;
   const description = postDescription
     ? postDescription
-    : globalConfig.siteDescription;
-  const image = postCover ? postCover : globalConfig.siteImage;
-  const url = globalConfig.siteUrl + globalConfig.pathPrefix + postSlug;
+    : globalConfig.description;
+  const image = postCover
+    ? postCover.childImageSharp.resize.coverImage
+    : globalConfig.siteImage;
+  const url = globalConfig.siteUrl + (postSlug ? postSlug : '');
 
   return (
     <Helmet
