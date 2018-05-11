@@ -29,11 +29,12 @@ exports.onCreateNode = ({ node, getNode, boundActionCreators }) => {
   }
 };
 
-exports.createPages = ({ graphql, boundActionCreators }) => {
+exports.createPages = async ({ graphql, boundActionCreators }) => {
   const { createPage } = boundActionCreators;
+
   const blogPostTemplate = path.resolve('./src/templates/post.js');
 
-  return graphql(`
+  const allMarkdown = await graphql(`
     {
       allMarkdownRemark(sort: { order: DESC, fields: [frontmatter___date] }) {
         totalCount
@@ -59,60 +60,61 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
         }
       }
     }
-  `).then(result => {
-    if (result.errors) {
-      return Promise.reject(result.errors);
+  `);
+
+  if (allMarkdown.errors) {
+    console.error(allMarkdown.erros);
+    throw Error(allMarkdown.errors);
+  }
+
+  const posts = allMarkdown.data.allMarkdownRemark.edges;
+  const numOfPosts = allMarkdown.data.allMarkdownRemark.totalCount;
+
+  createPaginatedPages({
+    edges: posts,
+    createPage: createPage,
+    pageTemplate: './src/templates/posts.js',
+    pageLength: CONTENT_PER_PAGE,
+    pathPrefix: 'posts/pages',
+    context: {
+      listHeader: 'Posts',
+      numOfPosts,
+    },
+  });
+
+  posts.forEach(edge => {
+    const slug = edge.node.fields.slug;
+    createPage({
+      path: slug,
+      component: blogPostTemplate,
+      context: {
+        slug,
+      },
+    });
+  });
+
+  let tags = [];
+  _.each(edge => {
+    if (_.get(edge, 'node.frontmatter.tags')) {
+      tags = tags.concat(edge.node.frontmatter.tags);
     }
+  });
+  tags = _.uniq(tags);
 
-    const posts = result.data.allMarkdownRemark.edges;
-    const numOfPosts = result.data.allMarkdownRemark.totalCount;
-
+  tags.forEach(tag => {
+    const tagPosts = posts.filter(edge =>
+      edge.node.frontmatter.tags.includes(tag)
+    );
     createPaginatedPages({
-      edges: posts,
+      edges: tagPosts,
       createPage: createPage,
       pageTemplate: './src/templates/posts.js',
       pageLength: CONTENT_PER_PAGE,
-      pathPrefix: 'posts/pages',
+      pathPrefix: `tags/${_.kebabCase(tag)}`,
       context: {
-        listHeader: 'Posts',
-        numOfPosts,
+        listHeader: tag,
+        numOfPosts: tagPosts.length,
       },
-    });
-
-    posts.forEach(({ node }) => {
-      createPage({
-        path: node.fields.slug,
-        component: blogPostTemplate,
-        context: {
-          slug: node.fields.slug,
-        }, // additional data can be passed via context
-      });
-    });
-
-    let tags = [];
-    _.each(posts, edge => {
-      if (_.get(edge, 'node.frontmatter.tags')) {
-        tags = tags.concat(edge.node.frontmatter.tags);
-      }
-    });
-    tags = _.uniq(tags);
-
-    tags.forEach(tag => {
-      const tagPosts = result.data.allMarkdownRemark.edges.filter(edge =>
-        edge.node.frontmatter.tags.includes(tag)
-      );
-
-      createPaginatedPages({
-        edges: tagPosts,
-        createPage: createPage,
-        pageTemplate: './src/templates/posts.js',
-        pageLength: CONTENT_PER_PAGE,
-        pathPrefix: `tags/${_.kebabCase(tag)}`,
-        context: {
-          listHeader: tag,
-          numOfPosts: tagPosts.length,
-        },
-      });
     });
   });
 };
