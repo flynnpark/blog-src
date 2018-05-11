@@ -70,6 +70,7 @@ exports.createPages = async ({ graphql, boundActionCreators }) => {
   const posts = allMarkdown.data.allMarkdownRemark.edges;
   const numOfPosts = allMarkdown.data.allMarkdownRemark.totalCount;
 
+  // 포스트 리스트 생성
   createPaginatedPages({
     edges: posts,
     createPage: createPage,
@@ -82,6 +83,7 @@ exports.createPages = async ({ graphql, boundActionCreators }) => {
     },
   });
 
+  // 포스트 페이지 생성
   posts.forEach(edge => {
     const slug = edge.node.fields.slug;
     createPage({
@@ -93,6 +95,7 @@ exports.createPages = async ({ graphql, boundActionCreators }) => {
     });
   });
 
+  // 태그 추출
   let tags = [];
   _.each(edge => {
     if (_.get(edge, 'node.frontmatter.tags')) {
@@ -101,6 +104,7 @@ exports.createPages = async ({ graphql, boundActionCreators }) => {
   });
   tags = _.uniq(tags);
 
+  // 각 태그별 포스트 리스트 생성
   tags.forEach(tag => {
     const tagPosts = posts.filter(edge =>
       edge.node.frontmatter.tags.includes(tag)
