@@ -19,6 +19,7 @@ exports.onCreateNode = ({ node, getNode, boundActionCreators }) => {
       node,
       getNode,
       basePath: 'blog-posts/contents',
+      trailingSlash: false,
     });
     const slug = postSlug;
     createNodeField({
