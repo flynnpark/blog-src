@@ -12,6 +12,7 @@ module.exports = {
     'gatsby-plugin-sharp',
     'gatsby-transformer-sharp',
     'gatsby-plugin-feed',
+    'gatsby-plugin-sitemap',
     {
       resolve: 'gatsby-transformer-remark',
       options: {
@@ -50,9 +51,6 @@ module.exports = {
       },
     },
     {
-      resolve: 'gatsby-plugin-sitemap',
-    },
-    {
       resolve: `@andrew-codes/gatsby-plugin-elasticlunr-search`,
       options: {
         // Fields to index
@@ -65,6 +63,18 @@ module.exports = {
             tags: node => node.frontmatter.tags,
           },
         },
+      },
+    },
+    {
+      resolve: 'gatsby-plugin-manifest',
+      options: {
+        name: globalConfig.siteTitle,
+        short_name: globalConfig.siteTitle,
+        start_url: '/',
+        background_color: '#1B1C1D',
+        theme_color: '#1B1C1D',
+        display: 'minimal-ui',
+        icon: 'src/images/favicon.png', // This path is relative to the root of the site.
       },
     },
   ],
