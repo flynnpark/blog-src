@@ -16,7 +16,7 @@ const DefaultLayout = ({
     allPosts: { posts },
   },
 }) => {
-  const { siteTitle } = globalConfig;
+  const { siteTitle, algolia } = globalConfig;
   return (
     <div
       style={{
@@ -28,6 +28,7 @@ const DefaultLayout = ({
       <Seo />
       <NavigationBar
         siteTitle={siteTitle}
+        algolia={algolia}
         postsInfo={posts}
         searchData={siteSearchIndex}
       />

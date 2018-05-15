@@ -12,6 +12,7 @@ class NavigationBar extends Component {
   render() {
     const {
       siteTitle,
+      algolia,
       postsInfo,
       searchData,
       dropdownVisible,
