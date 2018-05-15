@@ -82,7 +82,11 @@ class NavigationBar extends Component {
 }
 
 NavigationBar.propTypes = {
+  dropdownVisible: PropTypes.bool.isRequired,
+  postsInfo: PropTypes.array.isRequired,
+  searchData: PropTypes.object.isRequired,
   siteTitle: PropTypes.string.isRequired,
+  toggleDropdownVisible: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state, ownProps) => {

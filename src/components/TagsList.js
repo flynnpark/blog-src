@@ -34,7 +34,8 @@ TagsCard.propTypes = {
       fieldValue: PropTypes.string.isRequired,
       totalCount: PropTypes.number.isRequired,
     }).isRequired
-  ),
+  ).isRequired,
+  totalCount: PropTypes.number.isRequired,
 };
 
 export default TagsCard;

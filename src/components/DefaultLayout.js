@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Container, Grid } from 'semantic-ui-react';
 import globalConfig from '../../global-config';
 import Seo from '../components/Seo';
@@ -47,6 +48,22 @@ const DefaultLayout = ({
       <Footer />
     </div>
   );
+};
+
+DefaultLayout.propTypes = {
+  children: PropTypes.func.isRequired,
+  siteSearchIndex: PropTypes.object,
+  tags: PropTypes.arrayOf(
+    PropTypes.shape({
+      tagName: PropTypes.string.isRequired,
+      postCount: PropTypes.number.isRequired,
+    }).isRequired
+  ),
+  posts: PropTypes.arrayOf(
+    PropTypes.shape({
+      node: PropTypes.object.isRequired,
+    }).isRequired
+  ),
 };
 
 export default DefaultLayout;
