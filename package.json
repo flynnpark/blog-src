@@ -53,7 +53,6 @@
     "semantic-ui-react": "^0.79.1"
   },
   "devDependencies": {
-    "@andrew-codes/gatsby-plugin-elasticlunr-search": "^1.0.4",
     "prettier": "^1.12.1",
     "semantic-ui": "^2.3.1"
   }

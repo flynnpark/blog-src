@@ -87,21 +87,6 @@ module.exports = {
       },
     },
     {
-      resolve: `@andrew-codes/gatsby-plugin-elasticlunr-search`,
-      options: {
-        // Fields to index
-        fields: ['title', 'tags'],
-        // How to resolve each field's value for a supported node type
-        resolvers: {
-          // For any node of type MarkdownRemark, list how to resolve the fields' values
-          MarkdownRemark: {
-            title: node => node.frontmatter.title,
-            tags: node => node.frontmatter.tags,
-          },
-        },
-      },
-    },
-    {
       resolve: `gatsby-plugin-algolia`,
       options: {
         appId: process.env.ALGOLIA_APP_ID ? process.env.ALGOLIA_APP_ID : '',

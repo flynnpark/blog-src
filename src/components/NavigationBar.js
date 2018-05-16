@@ -13,8 +13,6 @@ class NavigationBar extends Component {
     const {
       siteTitle,
       algolia,
-      postsInfo,
-      searchData,
       dropdownVisible,
       toggleDropdownVisible,
     } = this.props;
@@ -39,7 +37,7 @@ class NavigationBar extends Component {
                 as={Menu.Item}
                 minWidth={Responsive.onlyTablet.minWidth}
               >
-                <Search postsInfo={postsInfo} searchData={searchData} />
+                <Search algolia={algolia} />
               </Responsive>
               <Responsive as={Menu.Item} {...Responsive.onlyMobile}>
                 <Dropdown
@@ -50,7 +48,7 @@ class NavigationBar extends Component {
                   onBlur={this.closeDropdown}
                 >
                   <Dropdown.Menu>
-                    <Search postsInfo={postsInfo} searchData={searchData} />
+                    <Search algolia={algolia} />
                     <Dropdown.Divider />
                     <Dropdown.Header content="Other menus" />
                     <Dropdown.Divider />
@@ -84,8 +82,6 @@ class NavigationBar extends Component {
 
 NavigationBar.propTypes = {
   dropdownVisible: PropTypes.bool.isRequired,
-  postsInfo: PropTypes.array.isRequired,
-  searchData: PropTypes.object.isRequired,
   siteTitle: PropTypes.string.isRequired,
   toggleDropdownVisible: PropTypes.func.isRequired,
 };

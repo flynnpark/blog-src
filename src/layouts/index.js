@@ -38,23 +38,10 @@ export default connect(mapStateToProps, mapDispatchToProps)(Layout);
 
 export const query = graphql`
   query LayoutQuery {
-    siteSearchIndex {
-      index
-    }
     recentTags: allMarkdownRemark(limit: 20) {
       tags: group(field: frontmatter___tags) {
         tagName: fieldValue
         postCount: totalCount
-      }
-    }
-    allPosts: allMarkdownRemark {
-      posts: edges {
-        node {
-          id
-          fields {
-            slug
-          }
-        }
       }
     }
   }
