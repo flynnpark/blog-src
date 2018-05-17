@@ -3,10 +3,8 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { actionCreators } from '../state/store';
 import Link from 'gatsby-link';
-import { Index } from 'elasticlunr';
 import { Menu, Container, Responsive, Dropdown } from 'semantic-ui-react';
 import Search from './Search';
-import SearchItem from './SearchItem';
 
 class NavigationBar extends Component {
   render() {

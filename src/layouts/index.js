@@ -6,6 +6,7 @@ import DefaultLayout from '../components/DefaultLayout';
 import '../semantic/dist/semantic.min.css';
 import 'github-markdown-css/github-markdown.css';
 import 'prismjs/themes/prism-tomorrow.css';
+import '../css/algolia.css';
 
 class Layout extends Component {
   render() {
@@ -38,6 +39,15 @@ export default connect(mapStateToProps, mapDispatchToProps)(Layout);
 
 export const query = graphql`
   query LayoutQuery {
+    site {
+      siteMetadata {
+        algolia {
+          appId
+          searchOnlyApiKey
+          indexName
+        }
+      }
+    }
     recentTags: allMarkdownRemark(limit: 20) {
       tags: group(field: frontmatter___tags) {
         tagName: fieldValue

@@ -11,10 +11,13 @@ import Footer from '../components/Footer';
 const DefaultLayout = ({
   children,
   data: {
+    site: {
+      siteMetadata: { algolia },
+    },
     recentTags: { tags },
   },
 }) => {
-  const { siteTitle, algolia } = globalConfig;
+  const { siteTitle } = globalConfig;
   return (
     <div
       style={{
