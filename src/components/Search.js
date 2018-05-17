@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { Popup } from 'semantic-ui-react';
 import {
   InstantSearch,
   SearchBox,
@@ -16,7 +17,15 @@ const Search = props => {
       apiKey={algolia.searchOnlyApiKey}
       indexName={algolia.indexName}
     >
-      <SearchBox translations={{ placeholder: 'Search...' }} />
+      <Popup
+        trigger={<SearchBox translations={{ placeholder: 'Search...' }} />}
+        on="click"
+        wide
+        hideOnScroll
+      >
+        <Stats />
+        <Pagination />
+      </Popup>
     </InstantSearch>
   );
 };
