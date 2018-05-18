@@ -155,9 +155,29 @@
 }
 
 .ais-Hits-list {
+  list-style-type: none;
+  margin: 1.5em 0;
+  padding: 0;
+}
+
+.ais-Hits-list:first-child {
+  margin-top: 0 !important;
+}
+
+.ais-Hits-list:last-child {
+  margin-bottom: 0 !important;
 }
 
 .ais-Hits-item {
+  border-top: 1px solid rgba(34, 35, 38, 0.15);
+  margin: 0;
+  padding: 1em 0;
+}
+
+.ais-Hits-item:first-child {
+  border-top: none;
+  margin-top: 0 !important;
+  padding-top: 0 !important;
 }
 
 /* Pagination */
