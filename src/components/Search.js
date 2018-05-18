@@ -18,33 +18,20 @@ const Search = props => {
       apiKey={algolia.searchOnlyApiKey}
       indexName={algolia.indexName}
     >
-      <div className="ui input search right aligned">
-        <SearchBox translations={{ placeholder: 'Search...' }} />
-        <div className="results transition visible" style={{ width: '36em' }}>
-          <Hits hitComponent={Hit} />
-          <Stats />
-          <Pagination />
-        </div>
+      <SearchBox translations={{ placeholder: 'Search...' }} />
+      <div className="ais-SearchResult transition visible">
+        <Hits />
+        <Stats />
+        <Pagination />
       </div>
     </InstantSearch>
   );
 };
 
 const Hit = props => {
-  console.log(props);
-  const { classes, hit } = props;
-  return (
-    <Item className="ui input">
-      <Item.Image
-        size="tiny"
-        src={hit.frontmatter.cover.childImageSharp.resize.coverImage}
-      />
-      <Item.Content className="ui input">
-        <Item.Header>{hit.frontmatter.title}</Item.Header>
-        <Item.Content>{hit.excerpt}</Item.Content>
-      </Item.Content>
-    </Item>
-  );
+  const { hit } = props;
+  console.log(hit);
+  return <span>{hit}</span>;
 };
 
 export default Search;

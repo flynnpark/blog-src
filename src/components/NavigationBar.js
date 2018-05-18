@@ -21,14 +21,9 @@ class NavigationBar extends Component {
             <Menu.Item as={Link} header to="/">
               {siteTitle}
             </Menu.Item>
-            <Responsive
-              as={Link}
-              className="item"
-              minWidth={Responsive.onlyTablet.minWidth}
-              to="/about/"
-            >
+            <Menu.Item as={Link} to="/about/">
               About
-            </Responsive>
+            </Menu.Item>
 
             <Menu.Menu position="right">
               <Responsive
@@ -38,23 +33,7 @@ class NavigationBar extends Component {
                 <Search algolia={algolia} />
               </Responsive>
               <Responsive as={Menu.Item} {...Responsive.onlyMobile}>
-                <Dropdown
-                  basic
-                  icon="bars"
-                  open={dropdownVisible}
-                  onClick={this.openDropdown}
-                  onBlur={this.closeDropdown}
-                >
-                  <Dropdown.Menu>
-                    <Search algolia={algolia} />
-                    <Dropdown.Divider />
-                    <Dropdown.Header content="Other menus" />
-                    <Dropdown.Divider />
-                    <Dropdown.Item as={Link} to="/about/">
-                      About
-                    </Dropdown.Item>
-                  </Dropdown.Menu>
-                </Dropdown>
+                <Search algolia={algolia} />
               </Responsive>
             </Menu.Menu>
           </Container>

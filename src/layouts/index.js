@@ -6,6 +6,7 @@ import DefaultLayout from '../components/DefaultLayout';
 import '../semantic/dist/semantic.min.css';
 import 'github-markdown-css/github-markdown.css';
 import 'prismjs/themes/prism-tomorrow.css';
+import 'instantsearch.css/themes/reset.css';
 import '../css/algolia.css';
 
 class Layout extends Component {

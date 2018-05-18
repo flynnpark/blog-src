@@ -42,6 +42,7 @@
     "gatsby-transformer-remark": "^1.7.40",
     "gatsby-transformer-sharp": "^1.6.24",
     "github-markdown-css": "^2.10.0",
+    "instantsearch.css": "^7.1.0",
     "netlify-cms": "^1.7.0",
     "prismjs": "^1.14.0",
     "react-disqus-comments": "^1.2.0",
