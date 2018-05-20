@@ -203,6 +203,95 @@
   padding-top: 0 !important;
 }
 
+.ais-Hits-item > .item > .image {
+  position: relative;
+  -ms-flex: 0 0 auto;
+  flex: 0 0 auto;
+  display: block;
+  float: none;
+  margin: 0;
+  padding: 0;
+  -ms-flex-item-align: top;
+  -ms-grid-row-align: top;
+  align-self: top;
+}
+
+.ais-Hits-item > .item > .image > img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 0.125rem;
+  border: none;
+}
+
+.ais-Hits-item > .item > .content {
+  display: block;
+  -ms-flex: 1 1 auto;
+  flex: 1 1 auto;
+  background: 0 0;
+  margin: 0;
+  padding: 0 0 0 1em;
+  box-shadoe: none;
+  font-size: 1em;
+  border: none;
+  border-radius: 0;
+}
+
+.ais-Hits-item > .item > .content > .header {
+  display: inline-block;
+  margin: -0.21425em 0 0;
+  font-family: Lato, Helvetica Neue, Arial, Helvetica, sans-sans-serif;
+  font-size: 1.28571429em;
+  font-weight: 700;
+  color: rgba(0, 0, 0, 0.87);
+}
+
+.ais-Hits-item > .item > .content > .header > .main.header {
+  font-size: 1.07142857em;
+}
+
+.ais-Hits-item > .item > .content > .header .sub.header {
+  display: block;
+  font-size: 1rem;
+  font-weight: 400;
+  padding: 0;
+  margin: 0;
+  line-height: 1.2em;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.ais-Hits-item > .item > .content > .meta {
+  margin: 0.5em 0;
+  font-size: 1em;
+  line-height: 1em;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.ais-Hits-item > .item > .content > .meta > .tags > * {
+  margin: 0.3em 0.3em;
+  font-size: 0.85714286rem;
+}
+
+.ais-Hits-item > .item > .content > .meta > .tags:last-child {
+  margin-right: 0em;
+}
+
+.ais-Hits-item > .item > .content > .meta > .tags > .tag {
+  display: inline-block;
+  line-height: 1;
+  vertical-align: baseline;
+  margin: 0.3em 0.5em 0.3em 0;
+  background: #e8e8e8;
+  background-image: none;
+  padding: 0.5833em 0.833em;
+  color: rgba(0, 0, 0, 0.6);
+  text-transform: none;
+  font-weight: 700;
+  border: 0 solid transparent;
+  border-radius: 0.28571429rem;
+  transition: background 0.1s ease;
+}
+
 /* Pagination */
 
 .ais-Pagination {

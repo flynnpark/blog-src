@@ -20,7 +20,7 @@ const Search = props => {
     >
       <SearchBox translations={{ placeholder: 'Search...' }} />
       <div className="ais-SearchResult transition visible">
-        <Hits />
+        <Hits hitComponent={Hit} />
         <Stats />
         <Pagination />
       </div>
@@ -31,7 +31,29 @@ const Search = props => {
 const Hit = props => {
   const { hit } = props;
   console.log(hit);
-  return <span>{hit}</span>;
+  return (
+    <div className="item">
+      <div className="image">
+        <img src={hit.frontmatter.cover.childImageSharp.resize.coverImage} />
+      </div>
+      <div className="content">
+        <div className="header">
+          <span className="main header">
+            {hit.frontmatter.title}
+            <div className="sub header">{hit.frontmatter.date}</div>
+          </span>
+        </div>
+        <div className="meta">
+          <div className="tags">
+            {hit.frontmatter.tags.map(tag => (
+              <span className="tag">{tag}</span>
+            ))}
+          </div>
+        </div>
+        <div className="description">{hit.excerpt}</div>
+      </div>
+    </div>
+  );
 };
 
 export default Search;
