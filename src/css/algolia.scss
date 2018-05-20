@@ -1,46 +1,142 @@
 .ais-InstantSearch__root {
   font-size: 0.78571429em;
   position: relative;
-  margin: 0.5em 0;
+  margin: -0.5em 0;
+  width: 100%;
   font-weight: 400;
   font-style: normal;
+  display: ms-inline-flexbox;
   display: inline-flex;
   color: rgba(0, 0, 0, 0.87);
+
   .ais-SearchBox {
-    display: -webkit-inline-box;
-    display: -ms-inline-flexbox;
-    display: inline-flex;
-    color: rgba(0, 0, 0, 0.87);
     .ais-SearchBox-form {
       .ais-SearchBox-input {
-        border-radius: 500rem;
+        font-size: 1em;
+        max-width: 100%;
+        ms-flex: 1 0 auto;
+        flex: 1 0 auto;
+        margin: 0;
         padding: 0.57142857em 1em;
         padding-right: 2.67142857em !important;
-        margin: 0;
-        max-width: 100%;
-        -webkit-box-flex: 1;
-        -ms-flex: 1 0 auto;
-        flex: 1 0 auto;
         outline: 0;
-        -web-tab-highlight-color: rgba(255, 255, 255, 0);
+        -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
         text-align: left;
         line-height: 1.21428571em;
         font-family: Lato, 'Helvetica Neue', Arial, Helvetica, sans-serif;
         background: #fff;
         border: 1px solid rgba(34, 36, 38, 0.15);
-        -webkit-transition: border-color 0.1s ease;
-        -webkit-box-shadow: 0.1s ease;
-        transition: border-color 0.1s ease;
+        border-radius: 500rem;
+        -webkit-transition: border-color 0.1s ease, -webkit-box-shadow 0.1s ease;
+        transition: border-color 0.1s ease, -webkit-box-shadow 0.1s ease;
+        transition: box-shadow 0.1s ease, border-color 0.1s ease;
+        transition: box-shadow 0.1s ease, border-color 0.1s ease,
+          -webkit-box-shadow 0.1s ease;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+
+        &::-webkit-input-placeholder {
+          color: rgba(191, 191, 191, 0.87);
+        }
+
+        &::-moz-placeholder {
+          color: rgba(191, 191, 191, 0.87);
+        }
+
+        &:-ms-input-placeholder {
+          color: rgba(191, 191, 191, 0.87);
+        }
+
+        &:focus {
+          border-color: #85b7d9;
+          background: #fff;
+          color: rgba(0, 0, 0, 0.8);
+          -webkit-box-shadow: none;
+          box-shadow: none;
+        }
+
+        &:focus::-webkit-input-placeholder {
+          color: rgba(115, 115, 115, 0.87);
+        }
+
+        &:focus::-moz-placeholder {
+          color: rgba(115, 115, 115, 0.87);
+        }
+
+        &:focus:-ms-input-placeholder {
+          color: rgba(115, 115, 115, 0.87);
+        }
       }
 
       .ais-SearchBox-submit {
+        padding: 0;
+        overflow: visible;
+        font: inherit;
+        line-height: normal;
+        color: inherit;
+        background: none;
+        border: 0;
+        cursor: pointer;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        position: absolute;
+        z-index: 1;
+        width: 1rem;
+        height: 1rem;
+        top: 50%;
+        right: 0.8rem;
+        -webkit-transform: translateY(-50%);
+        transform: translateY(-50%);
+
+        &::-moz-focus-inner {
+          padding: 0;
+          border: 0;
+        }
+
+        .ais-SearchBox-submitIcon {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          -webkit-transform: translateX(-50%) translateY(-50%);
+          transform: translateX(-50%) translateY(-50%);
+          width: 1em;
+          height: 1em;
+          margin: 0.1em;
+
+          path {
+            fill: rgba(0, 0, 0, 0.4);
+          }
+        }
       }
+
       .ais-SearchBox-reset {
         display: none;
       }
     }
   }
   .ais-SearchResult {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    -webkit-transform-origin: center top;
+    transform-origin: center top;
+    white-space: normal;
+    background: #fff;
+    margin-top: 0.5em;
+    width: 36em;
+    border-radius: 0.28571429rem;
+    -webkit-box-shadow: 0 2px 4px 0 rgba(34, 36, 38, 0.12),
+      0 2px 10px 0 rgba(34, 36, 38, 0.15);
+    box-shadow: 0 2px 4px 0 rgba(34, 36, 38, 0.12),
+      0 2px 10px 0 rgba(34, 36, 38, 0.15);
+    border: 1px solid #d4d4d5;
+    z-index: 998;
     .ais-Hits {
       .ais-Hits-list {
         .ais-Hits-item {
