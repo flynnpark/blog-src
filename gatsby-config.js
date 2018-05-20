@@ -58,6 +58,7 @@ module.exports = {
     'gatsby-transformer-sharp',
     'gatsby-plugin-feed',
     'gatsby-plugin-sitemap',
+    'gatsby-plugin-sass',
     {
       resolve: 'gatsby-transformer-remark',
       options: {

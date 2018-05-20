@@ -1,0 +1,57 @@
+.ais-InstantSearch__root {
+  font-size: 0.78571429em;
+  position: relative;
+  margin: 0.5em 0;
+  font-weight: 400;
+  font-style: normal;
+  display: inline-flex;
+  color: rgba(0, 0, 0, 0.87);
+  .ais-SearchBox {
+    display: -webkit-inline-box;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    color: rgba(0, 0, 0, 0.87);
+    .ais-SearchBox-form {
+      .ais-SearchBox-input {
+        border-radius: 500rem;
+        padding: 0.57142857em 1em;
+        padding-right: 2.67142857em !important;
+        margin: 0;
+        max-width: 100%;
+        -webkit-box-flex: 1;
+        -ms-flex: 1 0 auto;
+        flex: 1 0 auto;
+        outline: 0;
+        -web-tab-highlight-color: rgba(255, 255, 255, 0);
+        text-align: left;
+        line-height: 1.21428571em;
+        font-family: Lato, 'Helvetica Neue', Arial, Helvetica, sans-serif;
+        background: #fff;
+        border: 1px solid rgba(34, 36, 38, 0.15);
+        -webkit-transition: border-color 0.1s ease;
+        -webkit-box-shadow: 0.1s ease;
+        transition: border-color 0.1s ease;
+      }
+
+      .ais-SearchBox-submit {
+      }
+      .ais-SearchBox-reset {
+        display: none;
+      }
+    }
+  }
+  .ais-SearchResult {
+    .ais-Hits {
+      .ais-Hits-list {
+        .ais-Hits-item {
+        }
+      }
+    }
+    .ais-Stats {
+      .ais-Stats-text {
+      }
+    }
+    .ais-Pagination {
+    }
+  }
+}

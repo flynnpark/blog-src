@@ -7,7 +7,7 @@ import '../semantic/dist/semantic.min.css';
 import 'github-markdown-css/github-markdown.css';
 import 'prismjs/themes/prism-tomorrow.css';
 import 'instantsearch.css/themes/reset.css';
-import '../css/algolia.css';
+import '../css/algolia.scss';
 
 class Layout extends Component {
   render() {
