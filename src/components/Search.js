@@ -21,8 +21,8 @@ const Search = props => {
       <SearchBox translations={{ placeholder: 'Search...' }} />
       <div className="ais-SearchResult transition visible">
         <Hits hitComponent={Hit} />
-        <Stats />
         <Pagination />
+        <Stats />
       </div>
     </InstantSearch>
   );
@@ -45,8 +45,10 @@ const Hit = props => {
         </div>
         <div className="meta">
           <div className="tags">
-            {hit.frontmatter.tags.map(tag => (
-              <span className="tag">{tag}</span>
+            {hit.frontmatter.tags.map((tag, index) => (
+              <span className="tag" key={index}>
+                {tag}
+              </span>
             ))}
           </div>
         </div>
