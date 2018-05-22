@@ -272,6 +272,8 @@
       width: 100%;
       align-items: center;
       text-align: center;
+      margin-bottom: 1em;
+
       .ais-Pagination-list {
         display: -webkit-inline-box;
         display: -ms-inline-flexbox;
@@ -341,6 +343,10 @@
 
           &:last-child {
             border-radius: 0 0.28571429rem 0.28571429rem 0;
+
+            &:before {
+              display: none;
+            }
           }
 
           .ais-Pagination-link {
@@ -369,8 +375,18 @@
       }
     }
 
+    .ais-Pagination--noRefinement {
+      display: none;
+    }
+
     .ais-Stats {
+      border-top: 1px solid rgba(34, 36, 38, 0.15);
+
       .ais-Stats-text {
+        display: block;
+        padding: 1em;
+        text-align: center;
+        color: rgba(0, 0, 0, 0.6);
       }
     }
   }

@@ -32,7 +32,7 @@ const Hit = props => {
   const { hit } = props;
   console.log(hit);
   return (
-    <div className="item">
+    <Link className="item" to={hit.fields.slug}>
       <div className="image">
         <img src={hit.frontmatter.cover.childImageSharp.resize.coverImage} />
       </div>
@@ -54,7 +54,7 @@ const Hit = props => {
         </div>
         <div className="description">{hit.excerpt}</div>
       </div>
-    </div>
+    </Link>
   );
 };
 
