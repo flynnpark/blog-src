@@ -10,27 +10,37 @@ import {
   Pagination,
 } from 'react-instantsearch/dom';
 
-const Search = props => {
-  const { algolia } = props;
-  return (
-    <InstantSearch
-      appId={algolia.appId}
-      apiKey={algolia.searchOnlyApiKey}
-      indexName={algolia.indexName}
-    >
-      <SearchBox translations={{ placeholder: 'Search...' }} />
-      <div className="ais-SearchResult transition visible">
-        <Hits hitComponent={Hit} />
-        <Pagination />
-        <Stats />
-      </div>
-    </InstantSearch>
-  );
-};
+class Search extends Component {
+  state = {
+    openResults: false,
+  };
+  render() {
+    const { algolia } = this.props;
+    const { openResults } = this.state;
+    console.log(openResults);
+    return (
+      <InstantSearch
+        appId={algolia.appId}
+        apiKey={algolia.searchOnlyApiKey}
+        indexName={algolia.indexName}
+      >
+        <SearchBox translations={{ placeholder: 'Search...' }} />
+        <div
+          className={`ais-SearchResult transition ${
+            openResults ? 'visible' : ''
+          }`}
+        >
+          <Hits hitComponent={Hit} />
+          <Pagination />
+          <Stats />
+        </div>
+      </InstantSearch>
+    );
+  }
+}
 
 const Hit = props => {
   const { hit } = props;
-  console.log(hit);
   return (
     <Link className="item" to={hit.fields.slug}>
       <div className="image">
