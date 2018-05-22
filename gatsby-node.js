@@ -98,7 +98,7 @@ exports.createPages = async ({ graphql, boundActionCreators }) => {
 
   // 태그 추출
   let tags = [];
-  _.each(edge => {
+  _.each(posts, edge => {
     if (_.get(edge, 'node.frontmatter.tags')) {
       tags = tags.concat(edge.node.frontmatter.tags);
     }

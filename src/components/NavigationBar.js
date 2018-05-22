@@ -3,17 +3,14 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { actionCreators } from '../state/store';
 import Link from 'gatsby-link';
-import { Index } from 'elasticlunr';
 import { Menu, Container, Responsive, Dropdown } from 'semantic-ui-react';
 import Search from './Search';
-import SearchItem from './SearchItem';
 
 class NavigationBar extends Component {
   render() {
     const {
       siteTitle,
-      postsInfo,
-      searchData,
+      algolia,
       dropdownVisible,
       toggleDropdownVisible,
     } = this.props;
@@ -24,40 +21,19 @@ class NavigationBar extends Component {
             <Menu.Item as={Link} header to="/">
               {siteTitle}
             </Menu.Item>
-            <Responsive
-              as={Link}
-              className="item"
-              minWidth={Responsive.onlyTablet.minWidth}
-              to="/about/"
-            >
+            <Menu.Item as={Link} to="/about/">
               About
-            </Responsive>
+            </Menu.Item>
 
             <Menu.Menu position="right">
               <Responsive
                 as={Menu.Item}
                 minWidth={Responsive.onlyTablet.minWidth}
               >
-                <Search postsInfo={postsInfo} searchData={searchData} />
+                <Search algolia={algolia} />
               </Responsive>
               <Responsive as={Menu.Item} {...Responsive.onlyMobile}>
-                <Dropdown
-                  basic
-                  icon="bars"
-                  open={dropdownVisible}
-                  onClick={this.openDropdown}
-                  onBlur={this.closeDropdown}
-                >
-                  <Dropdown.Menu>
-                    <Search postsInfo={postsInfo} searchData={searchData} />
-                    <Dropdown.Divider />
-                    <Dropdown.Header content="Other menus" />
-                    <Dropdown.Divider />
-                    <Dropdown.Item as={Link} to="/about/">
-                      About
-                    </Dropdown.Item>
-                  </Dropdown.Menu>
-                </Dropdown>
+                <Search algolia={algolia} />
               </Responsive>
             </Menu.Menu>
           </Container>
@@ -82,7 +58,9 @@ class NavigationBar extends Component {
 }
 
 NavigationBar.propTypes = {
+  dropdownVisible: PropTypes.bool.isRequired,
   siteTitle: PropTypes.string.isRequired,
+  toggleDropdownVisible: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state, ownProps) => {

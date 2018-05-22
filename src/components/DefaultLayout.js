@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Container, Grid } from 'semantic-ui-react';
 import globalConfig from '../../global-config';
 import Seo from '../components/Seo';
@@ -10,9 +11,10 @@ import Footer from '../components/Footer';
 const DefaultLayout = ({
   children,
   data: {
-    siteSearchIndex,
+    site: {
+      siteMetadata: { algolia },
+    },
     recentTags: { tags },
-    allPosts: { posts },
   },
 }) => {
   const { siteTitle } = globalConfig;
@@ -25,11 +27,7 @@ const DefaultLayout = ({
       }}
     >
       <Seo />
-      <NavigationBar
-        siteTitle={siteTitle}
-        postsInfo={posts}
-        searchData={siteSearchIndex}
-      />
+      <NavigationBar siteTitle={siteTitle} algolia={algolia} />
       <Container
         style={{
           flex: 1,
@@ -47,6 +45,16 @@ const DefaultLayout = ({
       <Footer />
     </div>
   );
+};
+
+DefaultLayout.propTypes = {
+  children: PropTypes.func.isRequired,
+  tags: PropTypes.arrayOf(
+    PropTypes.shape({
+      tagName: PropTypes.string.isRequired,
+      postCount: PropTypes.number.isRequired,
+    }).isRequired
+  ),
 };
 
 export default DefaultLayout;

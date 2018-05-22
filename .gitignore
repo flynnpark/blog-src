@@ -7,3 +7,6 @@ yarn-error.log
 /public
 .DS_Store
 /src/semantic/dist
+
+# Enviroments
+.env
