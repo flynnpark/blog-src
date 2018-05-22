@@ -12,27 +12,46 @@ import {
 
 class Search extends Component {
   state = {
-    openResults: false,
+    resultsVisible: false,
+  };
+  openResults = () => {
+    window.addEventListener('click', this.closeResults);
+    this.setState({
+      resultsVisible: true,
+    });
+  };
+  closeResults = () => {
+    window.removeEventListener('click', this.closeResults);
+    this.setState({
+      resultsVisible: false,
+    });
   };
   render() {
+    const { resultsVisible } = this.state;
     const { algolia } = this.props;
-    const { openResults } = this.state;
-    console.log(openResults);
     return (
       <InstantSearch
         appId={algolia.appId}
         apiKey={algolia.searchOnlyApiKey}
         indexName={algolia.indexName}
       >
-        <SearchBox translations={{ placeholder: 'Search...' }} />
+        <SearchBox
+          translations={{ placeholder: 'Search...' }}
+          onClick={e => {
+            e.stopPropagation();
+            this.openResults();
+          }}
+        />
         <div
           className={`ais-SearchResult transition ${
-            openResults ? 'visible' : ''
+            resultsVisible ? 'visible' : ''
           }`}
         >
-          <Hits hitComponent={Hit} />
-          <Pagination />
-          <Stats />
+          <Hits hitComponent={Hit} onClick={this.closeResults} />
+          <div onClick={e => e.stopPropagation()}>
+            <Pagination onClick={e => e.stopPropagation()} />
+            <Stats />
+          </div>
         </div>
       </InstantSearch>
     );
