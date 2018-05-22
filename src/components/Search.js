@@ -1,86 +1,90 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import _ from 'lodash';
-import { Index } from 'elasticlunr';
+import Link from 'gatsby-link';
+import { Segment, Item } from 'semantic-ui-react';
 import {
-  Input,
-  Search as SearchComponent,
-  Header,
-  Label,
-} from 'semantic-ui-react';
-import SearchItem from './SearchItem';
+  InstantSearch,
+  SearchBox,
+  Stats,
+  Hits,
+  Pagination,
+} from 'react-instantsearch/dom';
 
 class Search extends Component {
   state = {
-    isLoading: false,
-    simpleResults: [],
-    rawResults: [],
-    value: '',
+    resultsVisible: false,
   };
-
-  static propTypes = {
-    postsInfo: PropTypes.array,
-    searchData: PropTypes.object,
-  };
-
-  handleSearchChange = (e, { value }) => {
-    this.setState({ isLoading: true, value });
-    this.index = this.getOrCreateIndex();
-    const rawResults = this.index
-      .search(value)
-      .map(({ ref }) => this.index.documentStore.getDoc(ref));
-    const simpleResults = [];
-
-    rawResults.map(({ title, tags }, index) => {
-      const nextResult = {
-        id: index,
-        title,
-      };
-      simpleResults.push(nextResult);
-    });
-
+  openResults = () => {
+    window.addEventListener('click', this.closeResults);
     this.setState({
-      isLoading: false,
-      value,
-      simpleResults,
-      rawResults,
+      resultsVisible: true,
     });
   };
-
-  getOrCreateIndex = () =>
-    this.index ? this.index : Index.load(this.props.searchData.index);
-
-  setCustomRenderer = resultProps => {
-    const { postsInfo } = this.props;
-    const currentResult = {
-      id: resultProps.id,
-      title: resultProps.title,
-    };
-    return SearchItem({
-      ...this.state,
-      postsInfo,
-      currentResult,
+  closeResults = () => {
+    window.removeEventListener('click', this.closeResults);
+    this.setState({
+      resultsVisible: false,
     });
   };
-
   render() {
-    const { isLoading, simpleResults, value } = this.state;
+    const { resultsVisible } = this.state;
+    const { algolia } = this.props;
     return (
-      <SearchComponent
-        aligned="right"
-        as={Input}
-        loading={isLoading}
-        onSearchChange={_.debounce(this.handleSearchChange, 500, {
-          leading: true,
-        })}
-        resultRenderer={this.setCustomRenderer}
-        results={simpleResults}
-        size="mini"
-        value={value}
-        placeholder="Search..."
-      />
+      <InstantSearch
+        appId={algolia.appId}
+        apiKey={algolia.searchOnlyApiKey}
+        indexName={algolia.indexName}
+      >
+        <SearchBox
+          translations={{ placeholder: 'Search...' }}
+          onClick={e => {
+            e.stopPropagation();
+            this.openResults();
+          }}
+        />
+        <div
+          className={`ais-SearchResult transition ${
+            resultsVisible ? 'visible' : ''
+          }`}
+        >
+          <Hits hitComponent={Hit} onClick={this.closeResults} />
+          <div onClick={e => e.stopPropagation()}>
+            <Pagination onClick={e => e.stopPropagation()} />
+            <Stats />
+          </div>
+        </div>
+      </InstantSearch>
     );
   }
 }
+
+const Hit = props => {
+  const { hit } = props;
+  return (
+    <Link className="item" to={hit.fields.slug}>
+      <div className="image">
+        <img src={hit.frontmatter.cover.childImageSharp.resize.coverImage} />
+      </div>
+      <div className="content">
+        <div className="header">
+          <span className="main header">
+            {hit.frontmatter.title}
+            <div className="sub header">{hit.frontmatter.date}</div>
+          </span>
+        </div>
+        <div className="meta">
+          <div className="tags">
+            {hit.frontmatter.tags.map((tag, index) => (
+              <span className="tag" key={index}>
+                {tag}
+              </span>
+            ))}
+          </div>
+        </div>
+        <div className="description">{hit.excerpt}</div>
+      </div>
+    </Link>
+  );
+};
 
 export default Search;

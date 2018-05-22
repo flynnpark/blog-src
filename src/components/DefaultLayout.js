@@ -11,9 +11,10 @@ import Footer from '../components/Footer';
 const DefaultLayout = ({
   children,
   data: {
-    siteSearchIndex,
+    site: {
+      siteMetadata: { algolia },
+    },
     recentTags: { tags },
-    allPosts: { posts },
   },
 }) => {
   const { siteTitle } = globalConfig;
@@ -26,11 +27,7 @@ const DefaultLayout = ({
       }}
     >
       <Seo />
-      <NavigationBar
-        siteTitle={siteTitle}
-        postsInfo={posts}
-        searchData={siteSearchIndex}
-      />
+      <NavigationBar siteTitle={siteTitle} algolia={algolia} />
       <Container
         style={{
           flex: 1,
@@ -52,16 +49,10 @@ const DefaultLayout = ({
 
 DefaultLayout.propTypes = {
   children: PropTypes.func.isRequired,
-  siteSearchIndex: PropTypes.object,
   tags: PropTypes.arrayOf(
     PropTypes.shape({
       tagName: PropTypes.string.isRequired,
       postCount: PropTypes.number.isRequired,
-    }).isRequired
-  ),
-  posts: PropTypes.arrayOf(
-    PropTypes.shape({
-      node: PropTypes.object.isRequired,
     }).isRequired
   ),
 };

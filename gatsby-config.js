@@ -1,10 +1,55 @@
+require('dotenv').config();
 const globalConfig = require('./global-config');
+
+const query = `{
+  allMarkdownRemark {
+    totalCount
+    edges {
+      node {
+        objectID: id
+        fields {
+          slug
+        }
+        excerpt
+        frontmatter {
+          date(formatString: "YYYY. MM. DD. HH:mm")
+          title
+          cover {
+            childImageSharp {
+              resize(width: 300) {
+                coverImage: src
+              }
+            }
+          }
+          tags
+        }
+      }
+    }
+  }
+}`;
+
+const queries = [
+  {
+    query,
+    transformer: ({ data }) =>
+      data.allMarkdownRemark.edges.map(({ node }) => node),
+  },
+];
 
 module.exports = {
   siteMetadata: {
     title: globalConfig.siteTitle,
     description: globalConfig.description,
     siteUrl: globalConfig.siteUrl,
+    algolia: {
+      appId: process.env.ALGOLIA_APP_ID ? process.env.ALGOLIA_APP_ID : '',
+      searchOnlyApiKey: process.env.ALGOLIA_SEARCH_ONLY_API_KEY
+        ? process.env.ALGOLIA_SEARCH_ONLY_API_KEY
+        : '',
+      indexName: process.env.ALGOLIA_INDEX_NAME
+        ? process.env.ALGOLIA_INDEX_NAME
+        : '',
+    },
   },
   plugins: [
     'gatsby-plugin-react-helmet',
@@ -13,6 +58,7 @@ module.exports = {
     'gatsby-transformer-sharp',
     'gatsby-plugin-feed',
     'gatsby-plugin-sitemap',
+    'gatsby-plugin-sass',
     {
       resolve: 'gatsby-transformer-remark',
       options: {
@@ -51,18 +97,17 @@ module.exports = {
       },
     },
     {
-      resolve: `@andrew-codes/gatsby-plugin-elasticlunr-search`,
+      resolve: `gatsby-plugin-algolia`,
       options: {
-        // Fields to index
-        fields: ['title', 'tags'],
-        // How to resolve each field's value for a supported node type
-        resolvers: {
-          // For any node of type MarkdownRemark, list how to resolve the fields' values
-          MarkdownRemark: {
-            title: node => node.frontmatter.title,
-            tags: node => node.frontmatter.tags,
-          },
-        },
+        appId: process.env.ALGOLIA_APP_ID ? process.env.ALGOLIA_APP_ID : '',
+        apiKey: process.env.ALGOLIA_ADMIN_API_KEY
+          ? process.env.ALGOLIA_ADMIN_API_KEY
+          : '',
+        indexName: process.env.ALGOLIA_INDEX_NAME
+          ? process.env.ALGOLIA_INDEX_NAME
+          : '',
+        queries,
+        chunkSize: 10000, // default: 1000
       },
     },
     {
