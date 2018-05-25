@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { actionCreators } from '../state/store';
 import Link from 'gatsby-link';
-import { Menu, Container, Responsive, Dropdown } from 'semantic-ui-react';
+import { Menu, Container, Responsive, Icon } from 'semantic-ui-react';
 import Search from './Search';
 
 class NavigationBar extends Component {
@@ -33,7 +33,7 @@ class NavigationBar extends Component {
                 <Search algolia={algolia} />
               </Responsive>
               <Responsive as={Menu.Item} {...Responsive.onlyMobile}>
-                <Search algolia={algolia} />
+                <Icon name="search" />
               </Responsive>
             </Menu.Menu>
           </Container>
@@ -41,20 +41,6 @@ class NavigationBar extends Component {
       </div>
     );
   }
-
-  openDropdown = () => {
-    const { dropdownVisible, toggleDropdownVisible } = this.props;
-    if (!dropdownVisible) {
-      toggleDropdownVisible(true);
-    }
-  };
-
-  closeDropdown = () => {
-    const { dropdownVisible, toggleDropdownVisible } = this.props;
-    if (dropdownVisible) {
-      toggleDropdownVisible(false);
-    }
-  };
 }
 
 NavigationBar.propTypes = {
@@ -63,17 +49,4 @@ NavigationBar.propTypes = {
   toggleDropdownVisible: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = (state, ownProps) => {
-  const { dropdownVisible } = state;
-  return { dropdownVisible };
-};
-
-const mapDispatchToProps = (dispatch, ownProps) => {
-  return {
-    toggleDropdownVisible: visible => {
-      dispatch(actionCreators.setDropdownVisible(visible));
-    },
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(NavigationBar);
+export default NavigationBar;
