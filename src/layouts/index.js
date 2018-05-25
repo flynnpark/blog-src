@@ -7,7 +7,7 @@ import '../semantic/dist/semantic.min.css';
 import 'github-markdown-css/github-markdown.css';
 import 'prismjs/themes/prism-tomorrow.css';
 import 'instantsearch.css/themes/reset.css';
-import '../css/algolia.scss';
+import '../styles/algolia.scss';
 
 const Layout = ({ children, data, sidebarVisible }) => {
   return <DefaultLayout children={children} data={data} />;
