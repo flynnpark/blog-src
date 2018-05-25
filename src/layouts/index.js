@@ -9,34 +9,11 @@ import 'prismjs/themes/prism-tomorrow.css';
 import 'instantsearch.css/themes/reset.css';
 import '../css/algolia.scss';
 
-class Layout extends Component {
-  render() {
-    const { children, data, sidebarVisible } = this.props;
-    return <DefaultLayout children={children} data={data} />;
-  }
-
-  closeSidebar = () => {
-    const { sidebarVisible, toggleSidebar } = this.props;
-    if (sidebarVisible) {
-      toggleSidebar(false);
-    }
-  };
-}
-
-const mapStateToProps = (state, ownProps) => {
-  const { sidebarVisible } = state;
-  return { sidebarVisible };
+const Layout = ({ children, data, sidebarVisible }) => {
+  return <DefaultLayout children={children} data={data} />;
 };
 
-const mapDispatchToProps = (dispatch, ownProps) => {
-  return {
-    toggleSidebar: visible => {
-      dispatch(actionCreators.setSidebarVisible(visible));
-    },
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Layout);
+export default Layout;
 
 export const query = graphql`
   query LayoutQuery {
