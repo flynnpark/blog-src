@@ -1,14 +1,10 @@
 {
   "name": "Flynndev",
-  "description": "배우고 개발하면서 느끼고 알게된 것들을 정리하는 블로그입니다.",
-  "version": "1.0.0",
+  "description":
+    "배우고 개발하면서 느끼고 알게된 것들을 정리하는 블로그입니다.",
+  "version": "1.0.0-beta1",
   "author": "Flynn Park <wphestiraid@gmail.com>",
-  "keywords": [
-    "gatsby",
-    "blog",
-    "react",
-    "developer"
-  ],
+  "keywords": ["gatsby", "blog", "react", "developer"],
   "license": "MIT",
   "scripts": {
     "update-contents": "git submodule update --init --remote",
@@ -50,6 +46,7 @@
     "react-helmet": "^5.2.0",
     "react-instantsearch": "^5.0.3",
     "react-redux": "^5.0.7",
+    "react-share": "^2.1.1",
     "redux": "^4.0.0",
     "redux-devtools-extension": "^2.13.2",
     "semantic-ui-react": "^0.79.1"

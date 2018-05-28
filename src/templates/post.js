@@ -4,6 +4,7 @@ import Link from 'gatsby-link';
 import kebabCase from 'lodash/kebabCase';
 import { Icon, Label, Header, Divider, Breadcrumb } from 'semantic-ui-react';
 import Seo from '../components/Seo';
+import PostShare from '../components/PostShare';
 import Disqus from '../components/Disqus';
 
 const PostDetail = ({ data }) => {
@@ -45,6 +46,7 @@ const PostDetail = ({ data }) => {
           dangerouslySetInnerHTML={{ __html: post.html }}
           style={{ marginBottom: '2em' }}
         />
+        <PostShare postNode={post} />
         <Disqus postNode={post} />
       </div>
     </div>

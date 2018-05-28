@@ -58,6 +58,14 @@ class Search extends Component {
   }
 }
 
+Search.propTypes = {
+  algolia: PropTypes.shape({
+    appId: PropTypes.string.isRequired,
+    searchOnlyApiKey: PropTypes.string.isRequired,
+    indexName: PropTypes.string.isRequired,
+  }).isRequired,
+};
+
 const Hit = props => {
   const { hit } = props;
   return (
