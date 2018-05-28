@@ -8,12 +8,7 @@ import Search from './Search';
 
 class NavigationBar extends Component {
   render() {
-    const {
-      siteTitle,
-      algolia,
-      dropdownVisible,
-      toggleDropdownVisible,
-    } = this.props;
+    const { siteTitle, algolia } = this.props;
     return (
       <div>
         <Menu borderless fixed="top" size="huge" inverted>
@@ -44,9 +39,12 @@ class NavigationBar extends Component {
 }
 
 NavigationBar.propTypes = {
-  dropdownVisible: PropTypes.bool.isRequired,
   siteTitle: PropTypes.string.isRequired,
-  toggleDropdownVisible: PropTypes.func.isRequired,
+  algolia: PropTypes.shape({
+    appId: PropTypes.string.isRequired,
+    searchOnlyApiKey: PropTypes.string.isRequired,
+    indexName: PropTypes.string.isRequired,
+  }),
 };
 
 export default NavigationBar;

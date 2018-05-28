@@ -34,4 +34,15 @@ const PostShare = ({ postNode }) => {
   );
 };
 
+PostShare.propTypes = {
+  postNode: PropTypes.shape({
+    fields: PropTypes.shape({
+      slug: PropTypes.string.isRequired,
+    }).isRequired,
+    frontmatter: PropTypes.shape({
+      title: PropTypes.string.isRequired,
+    }),
+  }).isRequired,
+};
+
 export default PostShare;
