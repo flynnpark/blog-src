@@ -382,6 +382,10 @@
     }
 
     .ais-Stats {
+      background-image: url('../images/search-by-algolia.svg');
+      background-position: right 15px center;
+      background-repeat: no-repeat;
+      background-size: 100px auto;
       border-top: 1px solid rgba(34, 36, 38, 0.15);
 
       .ais-Stats-text {
