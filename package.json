@@ -1,10 +1,14 @@
 {
   "name": "Flynndev",
-  "description":
-    "배우고 개발하면서 느끼고 알게된 것들을 정리하는 블로그입니다.",
+  "description": "배우고 개발하면서 느끼고 알게된 것들을 정리하는 블로그입니다.",
   "version": "1.0.0-beta1",
   "author": "Flynn Park <wphestiraid@gmail.com>",
-  "keywords": ["gatsby", "blog", "react", "developer"],
+  "keywords": [
+    "gatsby",
+    "blog",
+    "react",
+    "developer"
+  ],
   "license": "MIT",
   "scripts": {
     "update-contents": "git submodule update --init --remote",
